@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (localStorage.getItem('username')) {
         console.log("Found username!")
     } else {
-        loadContent("login.html");
+        loadContent("../../login.html");
     }
 });
 
