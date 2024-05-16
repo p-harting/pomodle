@@ -16,4 +16,16 @@ async function loadContent(page) {
     let response = await fetch(page);
     let content = await response.text();
     mainContainer.innerHTML = content;
+
+    if(page === "../../login.html") {
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            let username = document.getElementById('username').value;
+            let goal = document.getElementById('goal').value;
+            localStorage.setItem("username", username);
+            localStorage.setItem("goal", goal);
+            console.log("Set username!")
+            loadContent("../../index.html")
+        });
+    }
 }
