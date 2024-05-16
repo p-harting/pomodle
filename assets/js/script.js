@@ -3,7 +3,7 @@ const mainContainer = document.getElementsByTagName('main')[0];
 // Checks if username is stored, if not loads login.html
 document.addEventListener('DOMContentLoaded', function() {
     if (localStorage.getItem('username')) {
-        console.log("Found username!")
+        loadContent("../../index.html");
     } else {
         loadContent("../../login.html");
     }
@@ -24,8 +24,7 @@ async function loadContent(page) {
             let goal = document.getElementById('goal').value;
             localStorage.setItem("username", username);
             localStorage.setItem("goal", goal);
-            console.log("Set username!")
-            loadContent("../../index.html")
+            loadContent("../../index.html");
         });
     }
 }
