@@ -1,7 +1,7 @@
 const mainContainer = document.getElementsByTagName('main')[0];
 
-// Checks if username is stored, if not loads login.html
 document.addEventListener('DOMContentLoaded', function() {
+    // Checks if username is stored, if not loads login.html
     if (localStorage.getItem('username')) {
         loadContent("main.html");
     } else {
@@ -27,4 +27,18 @@ async function loadContent(page) {
             loadContent("main.html");
         });
     }
+    
+    //Adds event listener for buttons
+    document.getElementById('start').addEventListener('click', function() {
+        startTimer();
+    });
+}
+
+function startTimer() {
+    setInterval(function() {
+        const timer = document.getElementById('timer');
+        let currentValue = parseInt(timer.innerHTML, 10);
+        currentValue += 1;
+        timer.innerHTML = currentValue;
+    }, 1000);
 }
