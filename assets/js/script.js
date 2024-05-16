@@ -1,5 +1,14 @@
 const mainContainer = document.getElementsByTagName('main')[0];
 
+// Checks if username is stored, if not loads login.html
+document.addEventListener('DOMContentLoaded', function() {
+    if (localStorage.getItem('username')) {
+        console.log("Found username!")
+    } else {
+        loadContent("login.html");
+    }
+});
+
 /**
  * Loads content from a specified page URL and replaces the HTML content of the main container element with it.
  */
