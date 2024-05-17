@@ -1,4 +1,5 @@
 const mainContainer = document.getElementsByTagName('main')[0];
+let workTimer;
 
 document.addEventListener('DOMContentLoaded', function() {
     // Checks if username is stored, if not loads login.html
@@ -35,10 +36,24 @@ async function loadContent(page) {
 }
 
 function startTimer() {
-    setInterval(function() {
-        const timer = document.getElementById('timer');
-        let currentValue = parseInt(timer.innerHTML, 10);
-        currentValue += 1;
-        timer.innerHTML = currentValue;
+    const timer = document.getElementById('timer');
+    let currentValue = parseInt(timer.innerHTML, 10);
+
+    //Checks if work timer is already running
+    if (workTimer) {
+        return; 
+    }
+
+    //Sets work timer
+    workTimer = setInterval(function() {
+        if (currentValue > 0) {
+            currentValue -= 1;
+            timer.innerHTML = currentValue;
+        } else {
+            clearInterval(workTimer); 
+            workTimer = null;
+            alert('Time is up');
+            //pause timer should be started here
+        }
     }, 1000);
 }
