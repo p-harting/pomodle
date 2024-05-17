@@ -2,11 +2,13 @@ const mainContainer = document.getElementsByTagName('main')[0];
 let workTimer;
 let relaxTimer;
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Checks if username is stored, if not loads login.html
     if (localStorage.getItem('username')) {
         loadContent("main.html");
     } else {
+        localStorage.setItem('timer_status', 'stopped');
+        localStorage.setItem('status', 'none');
         loadContent("login.html");
     }
 });
@@ -20,7 +22,7 @@ async function loadContent(page) {
     mainContainer.innerHTML = content;
 
     if (page === "login.html") {
-        document.getElementById('login-form').addEventListener('submit', function(event) {
+        document.getElementById('login-form').addEventListener('submit', function (event) {
             event.preventDefault();
             let username = document.getElementById('username').value;
             let goal = document.getElementById('goal').value;
@@ -29,13 +31,13 @@ async function loadContent(page) {
             loadContent("main.html");
         });
     }
-    
+
     // Adds event listener for timer buttons
-    document.getElementById('start').addEventListener('click', function() {
-        startWorkTimer();
+    document.getElementById('start').addEventListener('click', function () {
+        startTimer(100);
     });
 
-    document.getElementById('pause').addEventListener('click', function() {
+    document.getElementById('pause').addEventListener('click', function () {
         pauseTimer();
     });
 }
@@ -64,63 +66,60 @@ function formatTime(seconds) {
 }
 
 /**
- * Starts a countdown timer for a 25 minute work period, updating the displayed time every second.
- * When the timer reaches zero, it starts the 5 minute relax timer.
+ * Converts a time string in the format "minutes:seconds" into total seconds.
  */
-function startWorkTimer() {
-    const timer = document.getElementById('timer');
-    let currentValue = 1500;
-    timer.innerHTML = formatTime(currentValue);
+function reverseTimeFormat(time) {
+    let timeParts = time.split(':');
 
-    // Checks if work timer is already running
-    if (workTimer) {
-        return;
-    }
+    let minutes = parseInt(timeParts[0]);
+    let seconds = parseInt(timeParts[1]);
 
-    localStorage.setItem('timer_status', 'running');
-    localStorage.setItem('status', 'work');
+    let totalSeconds = (minutes * 60) + seconds;
 
-    // Sets work timer
-    workTimer = setInterval(function() {
-        if (currentValue > 0) {
-            currentValue -= 1;
-            timer.innerHTML = formatTime(currentValue);
-        } else {
-            clearInterval(workTimer);
-            workTimer = null;
-            startRelaxTimer();
-        }
-    }, 1000);
+    return totalSeconds;
 }
 
-/**
- * Starts a countdown timer for a 5 minute relax period, updating the displayed time every second.
- * When the timer reaches zero, it starts the 25 minute work timer.
- */
-function startRelaxTimer() {
+function startTimer(seconds) {
     const timer = document.getElementById('timer');
-    let currentValue = 300;
-    timer.innerHTML = formatTime(currentValue);
+    let currentValue = seconds;
 
-    // Checks if relax timer is already running
-    if (relaxTimer) {
+    // Checks if a timer is running
+    if (relaxTimer || workTimer) {
+        console.log('Already running');
         return;
     }
 
-    localStorage.setItem('timer_status', 'running');
-    localStorage.setItem('status', 'relax');
+    //Starts worktimer based on status
+    if (localStorage.getItem('timer_status') === 'stopped' &&
+        (localStorage.getItem('status') === 'work' ||
+            localStorage.getItem('status') === 'none')) {
 
-    // Sets relax timer
-    relaxTimer = setInterval(function() {
-        if (currentValue > 0) {
-            currentValue -= 1;
-            timer.innerHTML = formatTime(currentValue);
-        } else {
-            clearInterval(relaxTimer);
-            relaxTimer = null;
-            startWorkTimer();
-        }
-    }, 1000);
+        localStorage.setItem('timer_status', 'running');
+        localStorage.setItem('status', 'work');
+
+        workTimer = setInterval(function () {
+            if (currentValue > 0) {
+                currentValue -= 1;
+                timer.innerHTML = formatTime(currentValue);
+            } else {
+                clearInterval(workTimer);
+                workTimer = null;
+            }
+        }, 1000);
+    } //Checks if timer is paused and starts with saved time
+    else if (localStorage.getItem('timer_status') === 'paused') {
+        localStorage.setItem('timer_status', 'running');
+        let currentValue = localStorage.getItem('time_left');
+        workTimer = setInterval(function () {
+            if (currentValue > 0) {
+                currentValue -= 1;
+                timer.innerHTML = formatTime(currentValue);
+            } else {
+                clearInterval(workTimer);
+                workTimer = null;
+            }
+        }, 1000);
+    }
 }
 
 /**
@@ -130,12 +129,14 @@ function pauseTimer() {
     const timer = document.getElementById('timer');
     if (localStorage.getItem('timer_status') === 'running') {
         localStorage.setItem('timer_status', 'paused');
-        localStorage.setItem('time_left', timer.innerHTML);
+        localStorage.setItem('time_left', reverseTimeFormat(timer.innerHTML));
 
         if (localStorage.getItem('status') === 'work') {
             clearInterval(workTimer);
+            workTimer = null;
         } else if (localStorage.getItem('status') === 'relax') {
             clearInterval(relaxTimer);
+            relaxTimer = null;
         }
     }
 }
