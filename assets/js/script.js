@@ -29,31 +29,60 @@ async function loadContent(page) {
         });
     }
     
-    //Adds event listener for buttons
+    // Adds event listener for buttons
     document.getElementById('start').addEventListener('click', function() {
-        startTimer();
+        startWorkTimer();
     });
 }
 
-function startTimer() {
-    const timer = document.getElementById('timer');
-    let currentValue = parseInt(timer.innerHTML, 10);
+/**
+ * Formats a given number of seconds into a string with minutes and seconds.
+ */
+function formatTime(seconds) {
+    // Calculates minutes and seconds
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    let minutesString = String(minutes);
+    let secondsString = String(remainingSeconds);
 
-    //Checks if work timer is already running
-    if (workTimer) {
-        return; 
+    // Adds zeros if necessary
+    if (minutesString.length < 2) {
+        minutesString = '0' + minutesString;
+    }
+    if (secondsString.length < 2) {
+        secondsString = '0' + secondsString;
     }
 
-    //Sets work timer
+    const formattedTime = minutesString + ':' + secondsString;
+
+    return formattedTime;
+}
+
+/**
+ * Starts a countdown timer for a 25 minute work period, updating the displayed time every second.
+ * When the timer reaches zero, it starts the 5 minute pause timer.
+ */
+function startWorkTimer() {
+    const timer = document.getElementById('timer');
+    let currentValue = 1500;
+    timer.innerHTML = formatTime(currentValue);
+
+    // Checks if work timer is already running
+    if (workTimer) {
+        return;
+    }
+
+    // Sets work timer
     workTimer = setInterval(function() {
         if (currentValue > 0) {
             currentValue -= 1;
-            timer.innerHTML = currentValue;
+            timer.innerHTML = formatTime(currentValue);
         } else {
-            clearInterval(workTimer); 
+            clearInterval(workTimer);
             workTimer = null;
             alert('Time is up');
-            //pause timer should be started here
+            // Pause timer should be started here
         }
     }, 1000);
 }
+
