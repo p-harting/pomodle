@@ -2,6 +2,10 @@ const mainContainer = document.getElementsByTagName('main')[0];
 let workTimer;
 let relaxTimer;
 
+//Defines the pomodoro time spans
+const workTime = 1500;
+const relaxTime = 300;
+
 //Saves time left before reload
 window.addEventListener('beforeunload', function(event) {
     localStorage.setItem('time_left', reverseTimeFormat(timer.innerHTML));
@@ -40,7 +44,7 @@ async function loadContent(page) {
 
     // Adds event listener for timer buttons
     document.getElementById('start').addEventListener('click', function () {
-        startTimer(100);
+        startTimer(workTime);
     });
 
     document.getElementById('pause').addEventListener('click', function () {
@@ -170,6 +174,8 @@ function resetTimer() {
     localStorage.setItem('timer_status', 'stopped')
     localStorage.setItem('status', 'none')
     localStorage.setItem('time_left', 1500)
+    const timer = document.getElementById('timer');
+    timer.innerHTML =  '25:00';
 }
 
 /**
