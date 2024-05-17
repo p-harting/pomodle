@@ -2,6 +2,12 @@ const mainContainer = document.getElementsByTagName('main')[0];
 let workTimer;
 let relaxTimer;
 
+//Saves time left before reload
+window.addEventListener('beforeunload', function(event) {
+    localStorage.setItem('time_left', reverseTimeFormat(timer.innerHTML));
+    localStorage.setItem('timer_status', 'paused');
+});
+
 document.addEventListener('DOMContentLoaded', function () {
     // Checks if username is stored, if not loads login.html
     if (localStorage.getItem('username')) {
@@ -40,6 +46,8 @@ async function loadContent(page) {
     document.getElementById('pause').addEventListener('click', function () {
         pauseTimer();
     });
+
+    startTimerFromSavedState();
 }
 
 /**
@@ -79,6 +87,9 @@ function reverseTimeFormat(time) {
     return totalSeconds;
 }
 
+/**
+ * Initiates a countdown timer with the specified duration in seconds.
+ */
 function startTimer(seconds) {
     const timer = document.getElementById('timer');
     let currentValue = seconds;
@@ -138,5 +149,18 @@ function pauseTimer() {
             clearInterval(relaxTimer);
             relaxTimer = null;
         }
+    }
+}
+
+/**
+ * Starts the timer with the saved state from local storage, if available.
+ */
+function startTimerFromSavedState() {
+    const timerStatus = localStorage.getItem('timer_status');
+    const timeLeft = localStorage.getItem('time_left');
+    const status = localStorage.getItem('status');
+
+    if (timerStatus === 'paused' && timeLeft && (status === 'work' || status === 'relax')) {
+        startTimer(parseInt(timeLeft));
     }
 }
