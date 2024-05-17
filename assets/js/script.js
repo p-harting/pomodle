@@ -3,11 +3,11 @@ let workTimer;
 let relaxTimer;
 
 //Defines the pomodoro time spans
-const workTime = 1500;
-const relaxTime = 300;
+const workTime = 10;
+const relaxTime = 5;
 
 //Saves time left before reload
-window.addEventListener('beforeunload', function(event) {
+window.addEventListener('beforeunload', function (event) {
     localStorage.setItem('time_left', reverseTimeFormat(timer.innerHTML));
     localStorage.setItem('timer_status', 'paused');
 });
@@ -123,6 +123,8 @@ function startTimer(seconds) {
             } else {
                 clearInterval(workTimer);
                 workTimer = null;
+                localStorage.setItem('status', 'relax')
+                startTimer(relaxTime);
             }
         }, 1000);
     } //Checks if timer is paused and starts with saved time
@@ -134,8 +136,32 @@ function startTimer(seconds) {
                 currentValue -= 1;
                 timer.innerHTML = formatTime(currentValue);
             } else {
-                clearInterval(workTimer);
-                workTimer = null;
+                if (localStorage.getItem('status') === 'work') {
+                    localStorage.setItem('status', 'relax')
+                    clearInterval(workTimer);
+                    workTimer = null;
+                    startTimer(relaxTime);
+                } else if (localStorage.getItem('status') === 'relax') {
+                    localStorage.setItem('status', 'work')
+                    clearInterval(relaxTimer);
+                    relaxTimer = null;
+                    startTimer(workTime);
+                }
+            }
+        }, 1000);
+    } else if (localStorage.getItem('status') === 'relax') {
+        localStorage.setItem('timer_status', 'running');
+
+        relaxTimer = setInterval(function () {
+            if (currentValue > 0) {
+                currentValue -= 1;
+                timer.innerHTML = formatTime(currentValue);
+            } else {
+                clearInterval(relaxTimer);
+                relaxTimer = null;
+                localStorage.setItem('status', 'work');
+                localStorage.setItem('timer_status', 'stopped');
+                startTimer(workTime);
             }
         }, 1000);
     }
@@ -175,7 +201,7 @@ function resetTimer() {
     localStorage.setItem('status', 'none')
     localStorage.setItem('time_left', 1500)
     const timer = document.getElementById('timer');
-    timer.innerHTML =  '25:00';
+    timer.innerHTML = '25:00';
 }
 
 /**
