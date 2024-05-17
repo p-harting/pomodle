@@ -181,6 +181,7 @@ function startTimerFromSavedState() {
     const status = localStorage.getItem('status');
 
     if (timerStatus === 'paused' && timeLeft && (status === 'work' || status === 'relax')) {
-        startTimer(parseInt(timeLeft));
+        const timer = document.getElementById('timer');
+        timer.innerHTML = formatTime(timeLeft);
     }
 }
