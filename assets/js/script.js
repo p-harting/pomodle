@@ -1,5 +1,6 @@
 const mainContainer = document.getElementsByTagName('main')[0];
 let workTimer;
+let pauseTimer;
 
 document.addEventListener('DOMContentLoaded', function() {
     // Checks if username is stored, if not loads login.html
@@ -80,9 +81,34 @@ function startWorkTimer() {
         } else {
             clearInterval(workTimer);
             workTimer = null;
-            alert('Time is up');
-            // Pause timer should be started here
+            startPauseTimer();
         }
     }, 1000);
 }
 
+/**
+ * Starts a countdown timer for a 5 minute pause period, updating the displayed time every second.
+ * When the timer reaches zero, it starts the 25 minute work timer.
+ */
+function startPauseTimer() {
+    const timer = document.getElementById('timer');
+    let currentValue = 300;
+    timer.innerHTML = formatTime(currentValue);
+
+    // Checks if pause timer is already running
+    if (pauseTimer) {
+        return;
+    }
+
+    // Sets pause timer
+    pauseTimer = setInterval(function() {
+        if (currentValue > 0) {
+            currentValue -= 1;
+            timer.innerHTML = formatTime(currentValue);
+        } else {
+            clearInterval(pauseTimer);
+            pauseTimer = null;
+            startWorkTimer();
+        }
+    }, 1000);
+}
