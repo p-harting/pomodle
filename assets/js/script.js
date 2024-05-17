@@ -47,6 +47,10 @@ async function loadContent(page) {
         pauseTimer();
     });
 
+    document.getElementById('reset').addEventListener('click', function () {
+        resetTimer();
+    });
+
     startTimerFromSavedState();
 }
 
@@ -150,6 +154,22 @@ function pauseTimer() {
             relaxTimer = null;
         }
     }
+}
+
+/**
+ * Resets timer.
+ */
+function resetTimer() {
+    if (localStorage.getItem('status') === 'work') {
+        clearInterval(workTimer);
+        workTimer = null;
+    } else if (localStorage.getItem('status') === 'relax') {
+        clearInterval(relaxTimer);
+        relaxTimer = null;
+    }
+    localStorage.setItem('timer_status', 'stopped')
+    localStorage.setItem('status', 'none')
+    localStorage.setItem('time_left', 1500)
 }
 
 /**
