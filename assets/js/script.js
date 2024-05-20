@@ -258,7 +258,7 @@ function createHistoryItem() {
     finishedTask.appendChild(lastTaskname);
     finishedTask.appendChild(lastReward);
     historyContainer.appendChild(finishedTask);
-    
+
     saveHistoryItem(localStorage.getItem('taskname'), '20 PP');
 }
 
@@ -312,3 +312,22 @@ function loadHistory() {
         historyContainer.appendChild(finishedTask);
     }
 }
+
+function openTab(event, tabName) {
+    const tabcontent = document.getElementsByClassName("tabcontent");
+    for (let i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+
+    const tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+
+    document.getElementById(tabName).style.display = "flex";
+    event.currentTarget.className += " active";
+}
+
+// Set the default tab to be opened
+document.getElementById("timer-container").style.display = "flex";
+document.querySelector(".tablinks").classList.add("active");

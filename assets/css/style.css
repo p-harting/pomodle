@@ -82,3 +82,21 @@ body {
     justify-content: space-between;
     margin: 10px 0;
 }
+
+.tab {
+    overflow: hidden;
+    background-color: #EFEFEF;
+    margin: 4px 8px;
+  }
+  
+  .tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    padding: 4px 8px;
+  }
+
+  .tabcontent {
+    display: none;
+    padding: 4px 8px;
+  }

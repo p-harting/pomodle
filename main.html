@@ -4,13 +4,20 @@
         <button id="edit">Edit</button>
     </div>
     <div class="main-container">
-        <div id="timer-container">
+        <div class="tab">
+            <button class="tablinks" onclick="openTab(event, 'timer-container')">Timer</button>
+            <button class="tablinks" onclick="openTab(event, 'shop-container')">Shop</button>
+          </div>
+        <div id="timer-container" class="tabcontent">
             <p id="timer">00:00</p>
             <div id="button-container">
                 <button id="start">Start</button>
                 <button id="pause">Pause</button>
                 <button id="reset">Reset</button>
             </div>
+        </div>
+        <div id="shop-container" class="tabcontent">
+            <p>Shop</p>
         </div>
     </div>
     <div id="history-container">
