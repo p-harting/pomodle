@@ -2,11 +2,11 @@ const mainContainer = document.getElementsByTagName('main')[0];
 let workTimer;
 let relaxTimer;
 
-//Defines the pomodoro time spans
+// Defines the pomodoro time spans
 const workTime = 10;
 const relaxTime = 5;
 
-//Saves time left before reload
+// Saves time left before reload
 window.addEventListener('beforeunload', function (event) {
     localStorage.setItem('time_left', reverseTimeFormat(timer.innerHTML));
     localStorage.setItem('timer_status', 'paused');
@@ -22,7 +22,6 @@ document.addEventListener('DOMContentLoaded', function () {
         loadContent("login.html");
     }
 });
-
 
 /**
  * Loads content from a specified page URL and replaces the HTML content of the main container element with it.
@@ -42,9 +41,9 @@ async function loadContent(page) {
             loadContent("main.html");
         });
     }
-    
-    //Checks if taskname exist and changes it
-    if(localStorage.getItem('taskname') === null) {
+
+    // Checks if taskname exist and changes it
+    if (localStorage.getItem('taskname') === null) {
         localStorage.setItem('taskname', 'Set the name of your task')
     }
     const tasknameDiv = document.getElementById('taskname');
@@ -65,8 +64,8 @@ async function loadContent(page) {
 
     startTimerFromSavedState();
 
-    //Edit taskname
-    document.getElementById('edit').addEventListener('click', function() {
+    // Edit taskname
+    document.getElementById('edit').addEventListener('click', function () {
         const tasknameDiv = document.getElementById('taskname');
         if (tasknameDiv.contentEditable === "true") {
             tasknameDiv.contentEditable = "false";
@@ -77,6 +76,9 @@ async function loadContent(page) {
             this.textContent = "Save";
         }
     });
+
+    // Load history from localStorage
+    loadHistory();
 }
 
 /**
@@ -129,7 +131,7 @@ function startTimer(seconds) {
         return;
     }
 
-    //Starts worktimer based on status
+    // Starts work timer based on status
     if (localStorage.getItem('timer_status') === 'stopped' &&
         (localStorage.getItem('status') === 'work' ||
             localStorage.getItem('status') === 'none')) {
@@ -144,11 +146,12 @@ function startTimer(seconds) {
             } else {
                 clearInterval(workTimer);
                 workTimer = null;
-                localStorage.setItem('status', 'relax')
+                createHistoryItem();
+                localStorage.setItem('status', 'relax');
                 startTimer(relaxTime);
             }
         }, 1000);
-    } //Checks if timer is paused and starts with saved time
+    } // Checks if timer is paused and starts with saved time
     else if (localStorage.getItem('timer_status') === 'paused') {
         localStorage.setItem('timer_status', 'running');
         let currentValue = localStorage.getItem('time_left');
@@ -236,5 +239,76 @@ function startTimerFromSavedState() {
     if (timerStatus === 'paused' && timeLeft && (status === 'work' || status === 'relax')) {
         const timer = document.getElementById('timer');
         timer.innerHTML = formatTime(timeLeft);
+    }
+}
+
+function createHistoryItem() {
+    const historyContainer = document.getElementById("history-container");
+    const finishedTask = document.createElement('div');
+    finishedTask.className = 'history-item';
+
+    const lastTaskname = document.createElement("p");
+    const lastTasknameText = document.createTextNode(localStorage.getItem('taskname'));
+    lastTaskname.appendChild(lastTasknameText);
+
+    const lastReward = document.createElement("p");
+    const lastRewardText = document.createTextNode('20 PP');
+    lastReward.appendChild(lastRewardText);
+
+    finishedTask.appendChild(lastTaskname);
+    finishedTask.appendChild(lastReward);
+    historyContainer.appendChild(finishedTask);
+    
+    saveHistoryItem(localStorage.getItem('taskname'), '20 PP');
+}
+
+function saveHistoryItem(taskName, reward) {
+    let history = localStorage.getItem('history');
+    
+    // If there is no history, set it to an empty array
+    if (history === null) {
+        history = [];
+    } else {
+        history = JSON.parse(history);
+    }
+    
+    // Create a new history item
+    let newHistoryItem = {
+        taskName: taskName,
+        reward: reward
+    };
+    
+    history.push(newHistoryItem);
+    localStorage.setItem('history', JSON.stringify(history));
+}
+
+function loadHistory() {
+    const historyContainer = document.getElementById("history-container");
+    let history = localStorage.getItem('history');
+    
+    // If there is no history, set it to an empty array
+    if (history === null) {
+        history = [];
+    } else {
+        history = JSON.parse(history);
+    }
+    
+    // Loop through each item in the history
+    for (let i = 0; i < history.length; i++) {
+        const finishedTask = document.createElement('div');
+        finishedTask.className = 'history-item';
+
+        const lastTaskname = document.createElement("p");
+        const lastTasknameText = document.createTextNode(history[i].taskName);
+        lastTaskname.appendChild(lastTasknameText);
+
+        const lastReward = document.createElement("p");
+        const lastRewardText = document.createTextNode(history[i].reward);
+        lastReward.appendChild(lastRewardText); 
+
+        finishedTask.appendChild(lastTaskname);
+        finishedTask.appendChild(lastReward);
+
+        historyContainer.appendChild(finishedTask);
     }
 }
