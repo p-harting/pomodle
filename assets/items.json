@@ -1,0 +1,24 @@
+[
+    {
+      "id": 1,
+      "name": "Item1",
+      "description": "This is item 1 with rate 1 and cost 100",
+      "cost": 100,
+      "rate": 1
+    },
+    {
+      "id": 2,
+      "name": "Item2",
+      "description": "This is item 2 with rate 2 and cost 500",
+      "cost": 500,
+      "rate": 2
+    },
+    {
+      "id": 3,
+      "name": "Item3",
+      "description": "This is item 3 with rate 3 and cost 1000",
+      "cost": 1000,
+      "rate": 3
+    }
+  ]
+  
