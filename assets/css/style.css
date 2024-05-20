@@ -1,0 +1,13 @@
+/* Wildcard to override default browser styles */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* General styles */
+body {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
