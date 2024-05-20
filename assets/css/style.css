@@ -31,3 +31,16 @@ body {
 }
 
 /* Main */
+#taskname-container {
+    display: flex;
+    flex-direction: row;
+    background-color: #EFEFEF;
+}
+
+#taskname {
+    flex-grow: 1;
+}
+
+#edit {
+    padding: 4px 8px;
+}
