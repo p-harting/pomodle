@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
+
 /**
  * Loads content from a specified page URL and replaces the HTML content of the main container element with it.
  */
@@ -41,6 +42,13 @@ async function loadContent(page) {
             loadContent("main.html");
         });
     }
+    
+    //Checks if taskname exist and changes it
+    if(localStorage.getItem('taskname') === null) {
+        localStorage.setItem('taskname', 'Set the name of your task')
+    }
+    const tasknameDiv = document.getElementById('taskname');
+    tasknameDiv.textContent = localStorage.getItem('taskname');
 
     // Adds event listener for timer buttons
     document.getElementById('start').addEventListener('click', function () {
@@ -56,6 +64,19 @@ async function loadContent(page) {
     });
 
     startTimerFromSavedState();
+
+    //Edit taskname
+    document.getElementById('edit').addEventListener('click', function() {
+        const tasknameDiv = document.getElementById('taskname');
+        if (tasknameDiv.contentEditable === "true") {
+            tasknameDiv.contentEditable = "false";
+            this.textContent = "Edit";
+            localStorage.setItem("taskname", tasknameDiv.textContent);
+        } else {
+            tasknameDiv.contentEditable = "true";
+            this.textContent = "Save";
+        }
+    });
 }
 
 /**
