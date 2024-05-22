@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
     } else {
         localStorage.setItem('timer_status', 'stopped');
         localStorage.setItem('status', 'none');
+        localStorage.setItem('productivity_points', '0');
         loadContent("login.html");
     }
 });
@@ -342,7 +343,7 @@ async function loadShop() {
     const shopContainer = document.getElementById("shop-container");
 
     // Loop through each item in the JSON array
-    for (var i = 0; i < items.length; i++) {
+    for (let i = 0; i < items.length; i++) {
         const shopItem = document.createElement('div');
         shopItem.className = 'shop-item';
 
@@ -379,6 +380,9 @@ async function loadShop() {
         const buyButton = document.createElement("button");
         buyButton.className = 'buy-button';
         buyButton.textContent = 'Buy';
+        buyButton.setAttribute('data-name', items[i].name);
+        buyButton.setAttribute('data-cost', items[i].cost);
+        buyButton.addEventListener('click', buyItem);
         buttonContainer.appendChild(buyButton);
 
         // Append item details and button container to the shop item
@@ -388,4 +392,51 @@ async function loadShop() {
         // Append the shop item to the shop container
         shopContainer.appendChild(shopItem);
     }
+}
+
+function buyItem(event) {
+    const button = event.target;
+    const itemCost = parseInt(button.getAttribute('data-cost'));
+    let points = parseInt(localStorage.getItem('productivity_points'));
+
+    if (points >= itemCost) {
+        points -= itemCost;
+        localStorage.setItem('productivity_points', points);
+        saveBoughtItem(button.getAttribute('data-name'));
+        alert("Purchase successful!");
+    } else {
+        alert("Not enough points!");
+    }
+}
+
+function saveBoughtItem(name) {
+    let items = localStorage.getItem('items');
+
+    // If there are no items, set it to an empty array
+    if (items === null) {
+        items = [];
+    } else {
+        items = JSON.parse(items);
+    }
+
+    // Check if the item already exists in the items array
+    let itemExists = false;
+    for (let i = 0; i < items.length; i++) {
+        if (items[i].item === name) {
+            items[i].amount += 1;
+            itemExists = true;
+            break;
+        }
+    }
+
+    // If the item does not exist, create a new list item
+    if (!itemExists) {
+        let newItem = {
+            item: name,
+            amount: 1
+        };
+        items.push(newItem);
+    }
+
+    localStorage.setItem('items', JSON.stringify(items));
 }
