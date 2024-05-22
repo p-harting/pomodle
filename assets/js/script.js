@@ -263,7 +263,8 @@ function createHistoryItem() {
     finishedTask.appendChild(lastReward);
     historyContainer.appendChild(finishedTask);
 
-    saveHistoryItem(localStorage.getItem('taskname'), '20 PP');
+    saveHistoryItem(localStorage.getItem('taskname'), '100 PP');
+    localStorage.setItem('productivity_points', parseInt(localStorage.getItem('productivity_points', '0')) + 100);
 }
 
 function saveHistoryItem(taskName, reward) {
