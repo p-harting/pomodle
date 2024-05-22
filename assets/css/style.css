@@ -100,3 +100,23 @@ body {
     display: none;
     padding: 4px 8px;
   }
+
+#shop-container {
+    flex-direction: column;
+    background-color: #EFEFEF;
+    margin: 4px 8px;
+}
+
+.shop-item {
+    display: flex;
+    flex-direction: row;
+    padding: 4px 8px;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #818181;
+    margin: 10px 0;
+}
+
+.buy-button {
+    padding: 4px 8px;
+}

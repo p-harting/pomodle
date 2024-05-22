@@ -346,33 +346,44 @@ async function loadShop() {
         const shopItem = document.createElement('div');
         shopItem.className = 'shop-item';
 
+        // Create a div for item details
+        const itemDetails = document.createElement('div');
+        itemDetails.className = 'item-details';
+
         // Create and append item name
-        const itemName = document.createElement("p");
+        const itemName = document.createElement("h3");
         itemName.className = 'item-name';
         const itemNameText = document.createTextNode(items[i].name);
         itemName.appendChild(itemNameText);
-        shopItem.appendChild(itemName);
+        itemDetails.appendChild(itemName);
 
         // Create and append item description
         const itemDescription = document.createElement("p");
         itemDescription.className = 'item-description';
         const itemDescriptionText = document.createTextNode(items[i].description);
         itemDescription.appendChild(itemDescriptionText);
-        shopItem.appendChild(itemDescription);
+        itemDetails.appendChild(itemDescription);
 
         // Create and append item cost
         const itemCost = document.createElement("p");
         itemCost.className = 'item-cost';
         const itemCostText = document.createTextNode(`Cost: ${items[i].cost}`);
         itemCost.appendChild(itemCostText);
-        shopItem.appendChild(itemCost);
+        itemDetails.appendChild(itemCost);
+
+        // Create a div for the buy button
+        const buttonContainer = document.createElement('div');
+        buttonContainer.className = 'button-container';
 
         // Create and append buy button
         const buyButton = document.createElement("button");
         buyButton.className = 'buy-button';
         buyButton.textContent = 'Buy';
+        buttonContainer.appendChild(buyButton);
 
-        shopItem.appendChild(buyButton);
+        // Append item details and button container to the shop item
+        shopItem.appendChild(itemDetails);
+        shopItem.appendChild(buttonContainer);
 
         // Append the shop item to the shop container
         shopContainer.appendChild(shopItem);
