@@ -79,6 +79,9 @@ async function loadContent(page) {
 
     // Load history from localStorage
     loadHistory();
+
+    // Load shop from items.json
+    loadShop();
 }
 
 /**
@@ -264,20 +267,20 @@ function createHistoryItem() {
 
 function saveHistoryItem(taskName, reward) {
     let history = localStorage.getItem('history');
-    
+
     // If there is no history, set it to an empty array
     if (history === null) {
         history = [];
     } else {
         history = JSON.parse(history);
     }
-    
+
     // Create a new history item
     let newHistoryItem = {
         taskName: taskName,
         reward: reward
     };
-    
+
     history.push(newHistoryItem);
     localStorage.setItem('history', JSON.stringify(history));
 }
@@ -285,14 +288,14 @@ function saveHistoryItem(taskName, reward) {
 function loadHistory() {
     const historyContainer = document.getElementById("history-container");
     let history = localStorage.getItem('history');
-    
+
     // If there is no history, set it to an empty array
     if (history === null) {
         history = [];
     } else {
         history = JSON.parse(history);
     }
-    
+
     // Loop through each item in the history
     for (let i = 0; i < history.length; i++) {
         const finishedTask = document.createElement('div');
@@ -304,7 +307,7 @@ function loadHistory() {
 
         const lastReward = document.createElement("p");
         const lastRewardText = document.createTextNode(history[i].reward);
-        lastReward.appendChild(lastRewardText); 
+        lastReward.appendChild(lastRewardText);
 
         finishedTask.appendChild(lastTaskname);
         finishedTask.appendChild(lastReward);
@@ -331,3 +334,47 @@ function openTab(event, tabName) {
 // Set the default tab to be opened
 document.getElementById("timer-container").style.display = "flex";
 document.querySelector(".tablinks").classList.add("active");
+
+async function loadShop() {
+    const response = await fetch('assets/items.json');
+    const items = await response.json();
+
+    const shopContainer = document.getElementById("shop-container");
+
+    // Loop through each item in the JSON array
+    for (var i = 0; i < items.length; i++) {
+        const shopItem = document.createElement('div');
+        shopItem.className = 'shop-item';
+
+        // Create and append item name
+        const itemName = document.createElement("p");
+        itemName.className = 'item-name';
+        const itemNameText = document.createTextNode(items[i].name);
+        itemName.appendChild(itemNameText);
+        shopItem.appendChild(itemName);
+
+        // Create and append item description
+        const itemDescription = document.createElement("p");
+        itemDescription.className = 'item-description';
+        const itemDescriptionText = document.createTextNode(items[i].description);
+        itemDescription.appendChild(itemDescriptionText);
+        shopItem.appendChild(itemDescription);
+
+        // Create and append item cost
+        const itemCost = document.createElement("p");
+        itemCost.className = 'item-cost';
+        const itemCostText = document.createTextNode(`Cost: ${items[i].cost}`);
+        itemCost.appendChild(itemCostText);
+        shopItem.appendChild(itemCost);
+
+        // Create and append buy button
+        const buyButton = document.createElement("button");
+        buyButton.className = 'buy-button';
+        buyButton.textContent = 'Buy';
+
+        shopItem.appendChild(buyButton);
+
+        // Append the shop item to the shop container
+        shopContainer.appendChild(shopItem);
+    }
+}
