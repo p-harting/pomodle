@@ -1,6 +1,7 @@
 const mainContainer = document.getElementsByTagName('main')[0];
 let workTimer;
 let relaxTimer;
+let productivityPointTimer;
 
 // Defines the pomodoro time spans
 const workTime = 10;
@@ -86,6 +87,8 @@ async function loadContent(page) {
 
     // Load new quote
     getQuote();
+
+    startIdle()
 }
 
 /**
@@ -453,4 +456,20 @@ async function getQuote() {
     const author = document.getElementById('author');
     quote.innerHTML = quotes.content;
     author.innerHTML = `-${quotes.author}`;
+}
+
+function startIdle() {
+    if (productivityPointTimer) {
+        clearInterval(productivityPointTimer);
+    }
+
+    productivityPointTimer = setInterval(function () {
+        if (localStorage.getItem('status') === 'work' && localStorage.getItem('timer_status') === 'running') {
+            const points = document.getElementById('points-placeholder');
+            points.innerHTML = localStorage.getItem('productivity_points');
+            let pointsAmount = parseInt(points.innerHTML);
+            points.innerHTML = pointsAmount += 1;
+            localStorage.setItem('productivity_points', points.innerHTML);
+        }
+    }, 1000)
 }
