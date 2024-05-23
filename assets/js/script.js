@@ -83,6 +83,9 @@ async function loadContent(page) {
 
     // Load shop from items.json
     loadShop();
+
+    // Load new quote
+    getQuote();
 }
 
 /**
@@ -265,6 +268,7 @@ function createHistoryItem() {
 
     saveHistoryItem(localStorage.getItem('taskname'), '100 PP');
     localStorage.setItem('productivity_points', parseInt(localStorage.getItem('productivity_points', '0')) + 100);
+    getQuote();
 }
 
 function saveHistoryItem(taskName, reward) {
@@ -440,4 +444,13 @@ function saveBoughtItem(name) {
     }
 
     localStorage.setItem('items', JSON.stringify(items));
+}
+
+async function getQuote() {
+    const response = await fetch("https://api.quotable.io/random");
+    const quotes = await response.json();
+    const quote = document.getElementById('quote');
+    const author = document.getElementById('author');
+    quote.innerHTML = quotes.content;
+    author.innerHTML = `-${quotes.author}`;
 }
