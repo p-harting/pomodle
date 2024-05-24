@@ -13,15 +13,27 @@ window.addEventListener('beforeunload', function (event) {
     localStorage.setItem('timer_status', 'paused');
 });
 
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', async function () {
     // Checks if username is stored, if not loads login.html
     if (localStorage.getItem('username')) {
-        loadContent("main.html");
+        await loadContent('main.html');
+
+        // Load history from localStorage
+        loadHistory();
+
+        // Load shop from items.json
+        loadShop();
+
+        // Load new quote
+        getQuote();
+
+        // Start Idle Interval
+        startIdle();
     } else {
         localStorage.setItem('timer_status', 'stopped');
         localStorage.setItem('status', 'none');
         localStorage.setItem('productivity_points', '0');
-        loadContent("login.html");
+        loadContent('login.html');
     }
 });
 
@@ -33,14 +45,14 @@ async function loadContent(page) {
     let content = await response.text();
     mainContainer.innerHTML = content;
 
-    if (page === "login.html") {
+    if (page === 'login.html') {
         document.getElementById('login-form').addEventListener('submit', function (event) {
             event.preventDefault();
             let username = document.getElementById('username').value;
             let goal = document.getElementById('goal').value;
-            localStorage.setItem("username", username);
-            localStorage.setItem("goal", goal);
-            loadContent("main.html");
+            localStorage.setItem('username', username);
+            localStorage.setItem('goal', goal);
+            loadContent('main.html');
         });
     }
 
@@ -69,26 +81,15 @@ async function loadContent(page) {
     // Edit taskname
     document.getElementById('edit').addEventListener('click', function () {
         const tasknameDiv = document.getElementById('taskname');
-        if (tasknameDiv.contentEditable === "true") {
-            tasknameDiv.contentEditable = "false";
-            this.textContent = "Edit";
-            localStorage.setItem("taskname", tasknameDiv.textContent);
+        if (tasknameDiv.contentEditable === 'true') {
+            tasknameDiv.contentEditable = 'false';
+            this.textContent = 'Edit';
+            localStorage.setItem('taskname', tasknameDiv.textContent);
         } else {
-            tasknameDiv.contentEditable = "true";
-            this.textContent = "Save";
+            tasknameDiv.contentEditable = 'true';
+            this.textContent = 'Save';
         }
     });
-
-    // Load history from localStorage
-    loadHistory();
-
-    // Load shop from items.json
-    loadShop();
-
-    // Load new quote
-    getQuote();
-
-    startIdle()
 }
 
 /**
@@ -253,15 +254,15 @@ function startTimerFromSavedState() {
 }
 
 function createHistoryItem() {
-    const historyContainer = document.getElementById("history-container");
+    const historyContainer = document.getElementById('history-container');
     const finishedTask = document.createElement('div');
     finishedTask.className = 'history-item';
 
-    const lastTaskname = document.createElement("p");
+    const lastTaskname = document.createElement('p');
     const lastTasknameText = document.createTextNode(localStorage.getItem('taskname'));
     lastTaskname.appendChild(lastTasknameText);
 
-    const lastReward = document.createElement("p");
+    const lastReward = document.createElement('p');
     const lastRewardText = document.createTextNode('20 PP');
     lastReward.appendChild(lastRewardText);
 
@@ -295,7 +296,7 @@ function saveHistoryItem(taskName, reward) {
 }
 
 function loadHistory() {
-    const historyContainer = document.getElementById("history-container");
+    const historyContainer = document.getElementById('history-container');
     let history = localStorage.getItem('history');
 
     // If there is no history, set it to an empty array
@@ -310,11 +311,11 @@ function loadHistory() {
         const finishedTask = document.createElement('div');
         finishedTask.className = 'history-item';
 
-        const lastTaskname = document.createElement("p");
+        const lastTaskname = document.createElement('p');
         const lastTasknameText = document.createTextNode(history[i].taskName);
         lastTaskname.appendChild(lastTasknameText);
 
-        const lastReward = document.createElement("p");
+        const lastReward = document.createElement('p');
         const lastRewardText = document.createTextNode(history[i].reward);
         lastReward.appendChild(lastRewardText);
 
@@ -326,29 +327,29 @@ function loadHistory() {
 }
 
 function openTab(event, tabName) {
-    const tabcontent = document.getElementsByClassName("tabcontent");
+    const tabcontent = document.getElementsByClassName('tabcontent');
     for (let i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
+        tabcontent[i].style.display = 'none';
     }
 
-    const tablinks = document.getElementsByClassName("tablinks");
+    const tablinks = document.getElementsByClassName('tablinks');
     for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
+        tablinks[i].className = tablinks[i].className.replace(' active', '');
     }
 
-    document.getElementById(tabName).style.display = "flex";
-    event.currentTarget.className += " active";
+    document.getElementById(tabName).style.display = 'flex';
+    event.currentTarget.className += ' active';
 }
 
 // Set the default tab to be opened
-document.getElementById("timer-container").style.display = "flex";
-document.querySelector(".tablinks").classList.add("active");
+document.getElementById('timer-container').style.display = 'flex';
+document.querySelector('.tablinks').classList.add('active');
 
 async function loadShop() {
     const response = await fetch('assets/items.json');
     const items = await response.json();
 
-    const shopContainer = document.getElementById("shop-container");
+    const shopContainer = document.getElementById('shop-container');
 
     // Loop through each item in the JSON array
     for (let i = 0; i < items.length; i++) {
@@ -360,21 +361,21 @@ async function loadShop() {
         itemDetails.className = 'item-details';
 
         // Create and append item name
-        const itemName = document.createElement("h3");
+        const itemName = document.createElement('h3');
         itemName.className = 'item-name';
         const itemNameText = document.createTextNode(items[i].name);
         itemName.appendChild(itemNameText);
         itemDetails.appendChild(itemName);
 
         // Create and append item description
-        const itemDescription = document.createElement("p");
+        const itemDescription = document.createElement('p');
         itemDescription.className = 'item-description';
         const itemDescriptionText = document.createTextNode(items[i].description);
         itemDescription.appendChild(itemDescriptionText);
         itemDetails.appendChild(itemDescription);
 
         // Create and append item cost
-        const itemCost = document.createElement("p");
+        const itemCost = document.createElement('p');
         itemCost.className = 'item-cost';
         const itemCostText = document.createTextNode(`Cost: ${items[i].cost}`);
         itemCost.appendChild(itemCostText);
@@ -385,7 +386,7 @@ async function loadShop() {
         buttonContainer.className = 'button-container';
 
         // Create and append buy button
-        const buyButton = document.createElement("button");
+        const buyButton = document.createElement('button');
         buyButton.className = 'buy-button';
         buyButton.textContent = 'Buy';
         buyButton.setAttribute('data-name', items[i].name);
@@ -411,9 +412,9 @@ function buyItem(event) {
         points -= itemCost;
         localStorage.setItem('productivity_points', points);
         saveBoughtItem(button.getAttribute('data-name'));
-        alert("Purchase successful!");
+        alert('Purchase successful!');
     } else {
-        alert("Not enough points!");
+        alert('Not enough points!');
     }
 }
 
@@ -450,7 +451,7 @@ function saveBoughtItem(name) {
 }
 
 async function getQuote() {
-    const response = await fetch("https://api.quotable.io/random");
+    const response = await fetch('https://api.quotable.io/random');
     const quotes = await response.json();
     const quote = document.getElementById('quote');
     const author = document.getElementById('author');
@@ -467,8 +468,8 @@ function startIdle() {
         if (localStorage.getItem('status') === 'work' && localStorage.getItem('timer_status') === 'running') {
             const points = document.getElementById('points-placeholder');
             points.innerHTML = localStorage.getItem('productivity_points');
-            let pointsAmount = parseInt(points.innerHTML);
-            points.innerHTML = pointsAmount += 1;
+            const pointsAmount = parseInt(points.innerHTML);
+            points.innerHTML = pointsAmount + 1;
             localStorage.setItem('productivity_points', points.innerHTML);
         }
     }, 1000)
