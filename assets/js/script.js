@@ -32,7 +32,8 @@ document.addEventListener('DOMContentLoaded', async function () {
     } else {
         localStorage.setItem('timer_status', 'stopped');
         localStorage.setItem('status', 'none');
-        localStorage.setItem('productivity_points', '0');
+        localStorage.setItem('productivity_points', 0);
+        localStorage.setItem('multiplicator', 0);
         loadContent('login.html');
     }
 });
@@ -391,6 +392,7 @@ async function loadShop() {
         buyButton.textContent = 'Buy';
         buyButton.setAttribute('data-name', items[i].name);
         buyButton.setAttribute('data-cost', items[i].cost);
+        buyButton.setAttribute('data-rate', items[i].rate);
         buyButton.addEventListener('click', buyItem);
         buttonContainer.appendChild(buyButton);
 
@@ -413,6 +415,8 @@ function buyItem(event) {
         localStorage.setItem('productivity_points', points);
         saveBoughtItem(button.getAttribute('data-name'));
         alert('Purchase successful!');
+        const multiplicator = parseInt(localStorage.getItem('multiplicator'));
+        localStorage.setItem('multiplicator', multiplicator + parseInt(button.getAttribute('data-rate')));
     } else {
         alert('Not enough points!');
     }
@@ -469,7 +473,7 @@ function startIdle() {
             const points = document.getElementById('points-placeholder');
             points.innerHTML = localStorage.getItem('productivity_points');
             const pointsAmount = parseInt(points.innerHTML);
-            points.innerHTML = pointsAmount + 1;
+            points.innerHTML = pointsAmount + parseInt(localStorage.getItem('multiplicator'));
             localStorage.setItem('productivity_points', points.innerHTML);
         }
     }, 1000)
