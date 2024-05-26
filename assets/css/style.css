@@ -45,6 +45,35 @@ p {
     padding: 4px 0;
 }
 
+/* Index */
+header {
+    display: flex;
+    flex-direction: row;
+    margin: 10px 20px;
+    color: white;
+    justify-content: space-between;
+}
+
+.profile-container {
+    display: flex;
+    flex-direction: row;
+}
+
+#profile-picture {
+    display: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    background-color: #E669FB;
+    justify-content: space-around;
+    align-items: center;
+    margin: 10px 20px;
+}
+
+.fa-user {
+    font-size: 20px;
+}
+
 /* Login */
 #login {
     display: flex;
@@ -189,4 +218,12 @@ p {
 
 .buy-button {
     padding: 4px 8px;
+}
+
+/* Media query: tablets */
+@media screen and (min-width: 768px) {
+
+    #profile-picture {
+        display: flex;
+    }
 }
