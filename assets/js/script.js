@@ -272,7 +272,7 @@ function createHistoryItem() {
     lastTaskname.appendChild(lastTasknameText);
 
     const lastReward = document.createElement('p');
-    const lastRewardText = document.createTextNode('20 PP');
+    const lastRewardText = document.createTextNode('100 PP');
     lastReward.appendChild(lastRewardText);
 
     finishedTask.appendChild(lastTaskname);
@@ -281,6 +281,8 @@ function createHistoryItem() {
 
     saveHistoryItem(localStorage.getItem('taskname'), '100 PP');
     localStorage.setItem('productivity_points', parseInt(localStorage.getItem('productivity_points', '0')) + 100);
+    const points = document.getElementById('points');
+    points.innerHTML = localStorage.getItem('productivity_points');
     getQuote();
 }
 
