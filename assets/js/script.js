@@ -17,22 +17,6 @@ document.addEventListener('DOMContentLoaded', async function () {
     // Checks if username is stored, if not loads login.html
     if (localStorage.getItem('username')) {
         await loadContent('main.html');
-
-        // Load history from localStorage
-        loadHistory();
-
-        // Load shop from items.json
-        loadShop();
-
-        // Load new quote
-        getQuote();
-
-        // Start Idle Interval
-        startIdle();
-
-        // Load a new quote
-        getQuote();
-
     } else {
         localStorage.setItem('timer_status', 'stopped');
         localStorage.setItem('status', 'none');
@@ -60,6 +44,18 @@ async function loadContent(page) {
             loadContent('main.html');
         });
     }
+
+    // Load history from localStorage
+    loadHistory();
+
+    // Load shop from items.json
+    loadShop();
+
+    // Load new quote
+    getQuote();
+
+    // Start Idle Interval
+    startIdle();
 
     // Load a new quote
     getQuote();
