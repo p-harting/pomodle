@@ -61,6 +61,10 @@ async function loadContent(page) {
     // Start Idle Interval
     startIdle();
 
+    // Change username
+    const username = document.getElementById('username');
+    username.innerHTML = localStorage.getItem('username');
+
     // Load a new quote
     getQuote();
 
