@@ -51,6 +51,10 @@ async function loadContent(page) {
     // Load shop from items.json
     loadShop();
 
+    // Set the default tab to be opened
+    document.getElementById('timer-container').style.display = 'flex';
+    document.querySelector('.tablinks').classList.add('active');
+
     // Load new quote
     getQuote();
 
@@ -345,10 +349,6 @@ function openTab(event, tabName) {
     document.getElementById(tabName).style.display = 'flex';
     event.currentTarget.className += ' active';
 }
-
-// Set the default tab to be opened
-document.getElementById('timer-container').style.display = 'flex';
-document.querySelector('.tablinks').classList.add('active');
 
 async function loadShop() {
     const response = await fetch('assets/items.json');
