@@ -188,6 +188,27 @@ header {
     padding: 4px 8px;
 }
 
+#start, #pause, #reset { 
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    margin: 20px;
+}
+
+.fa-play, .fa-pause, .fa-rotate-right {
+    font-size: 20px;
+    color: white;
+}
+
+.fa-play:hover,
+.fa-pause:hover,
+.fa-rotate-right:hover {
+    color: black;
+}
+
 #button-container {
     display: flex;
     flex-direction: row;
