@@ -367,6 +367,13 @@ async function loadShop() {
         const shopItem = document.createElement('div');
         shopItem.className = 'shop-item';
 
+        // Create a div for the image
+        const itemImage = document.createElement('img');
+        itemImage.className = 'item-image';
+        const imageName = items[i].name.toLowerCase().split(' ').join('-');
+        itemImage.src = `assets/images/items/${imageName}.jpg`;
+
+
         // Create a div for item details
         const itemDetails = document.createElement('div');
         itemDetails.className = 'item-details';
@@ -406,7 +413,8 @@ async function loadShop() {
         buyButton.addEventListener('click', buyItem);
         buttonContainer.appendChild(buyButton);
 
-        // Append item details and button container to the shop item
+        // Append item image, details and button container to the shop item
+        shopItem.appendChild(itemImage);
         shopItem.appendChild(itemDetails);
         shopItem.appendChild(buttonContainer);
 

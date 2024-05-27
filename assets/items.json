@@ -1,24 +1,44 @@
 [
-    {
-      "id": 1,
-      "name": "Item1",
-      "description": "This is item 1 with rate 1 and cost 100",
-      "cost": 100,
-      "rate": 1
-    },
-    {
-      "id": 2,
-      "name": "Item2",
-      "description": "This is item 2 with rate 2 and cost 500",
-      "cost": 500,
-      "rate": 2
-    },
-    {
-      "id": 3,
-      "name": "Item3",
-      "description": "This is item 3 with rate 3 and cost 1000",
-      "cost": 1000,
-      "rate": 3
-    }
-  ]
-  
+  {
+    "id": 1,
+    "name": "Tomato Timer",
+    "description": "A classic tomato-shaped timer to keep your Pomodoro sessions on track.",
+    "cost": 100,
+    "rate": 1
+  },
+  {
+    "id": 2,
+    "name": "Focus Flask",
+    "description": "A magical flask that boosts your focus and concentration during work intervals.",
+    "cost": 500,
+    "rate": 2
+  },
+  {
+    "id": 3,
+    "name": "Task Tracker Notebook",
+    "description": "A beautifully crafted notebook that helps you track your tasks and progress.",
+    "cost": 1000,
+    "rate": 3
+  },
+  {
+    "id": 4,
+    "name": "Productivity Hourglass",
+    "description": "An hourglass that flows with golden sand to signify the precious time of each Pomodoro session.",
+    "cost": 1500,
+    "rate": 4
+  },
+  {
+    "id": 5,
+    "name": "Concentration Candle",
+    "description": "A scented candle that enhances your concentration and creates a calming work environment.",
+    "cost": 2000,
+    "rate": 5
+  },
+  {
+    "id": 6,
+    "name": "Energy Elixir",
+    "description": "A potion that revitalizes you during breaks, ensuring you stay energetic and focused.",
+    "cost": 2500,
+    "rate": 6
+  }
+]

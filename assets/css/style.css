@@ -259,6 +259,18 @@ header {
     margin: 10px 0;
 }
 
+.item-details {
+    flex: 1;
+}
+
+.item-image {
+    width: 100px;
+    height: 100px;
+    margin-right: 20px;
+    flex-shrink: 0;
+    object-fit: cover;
+}
+
 .buy-button {
     padding: 4px 8px;
 }
