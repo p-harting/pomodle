@@ -29,6 +29,10 @@ document.addEventListener('DOMContentLoaded', async function () {
 
         // Start Idle Interval
         startIdle();
+
+        // Load a new quote
+        getQuote();
+
     } else {
         localStorage.setItem('timer_status', 'stopped');
         localStorage.setItem('status', 'none');
@@ -57,9 +61,13 @@ async function loadContent(page) {
         });
     }
 
+    // Load a new quote
+    getQuote();
+
+
     // Checks if taskname exist and changes it
     if (localStorage.getItem('taskname') === null) {
-        localStorage.setItem('taskname', 'Set the name of your task')
+        localStorage.setItem('taskname', 'Set the name of your task');
     }
     const tasknameDiv = document.getElementById('taskname');
     tasknameDiv.textContent = localStorage.getItem('taskname');
@@ -173,12 +181,12 @@ function startTimer(seconds) {
                 timer.innerHTML = formatTime(currentValue);
             } else {
                 if (localStorage.getItem('status') === 'work') {
-                    localStorage.setItem('status', 'relax')
+                    localStorage.setItem('status', 'relax');
                     clearInterval(workTimer);
                     workTimer = null;
                     startTimer(relaxTime);
                 } else if (localStorage.getItem('status') === 'relax') {
-                    localStorage.setItem('status', 'work')
+                    localStorage.setItem('status', 'work');
                     clearInterval(relaxTimer);
                     relaxTimer = null;
                     startTimer(workTime);
@@ -233,9 +241,9 @@ function resetTimer() {
         clearInterval(relaxTimer);
         relaxTimer = null;
     }
-    localStorage.setItem('timer_status', 'stopped')
-    localStorage.setItem('status', 'none')
-    localStorage.setItem('time_left', 1500)
+    localStorage.setItem('timer_status', 'stopped');
+    localStorage.setItem('status', 'none');
+    localStorage.setItem('time_left', 1500);
     const timer = document.getElementById('timer');
     timer.innerHTML = '25:00';
 }
@@ -470,11 +478,11 @@ function startIdle() {
 
     productivityPointTimer = setInterval(function () {
         if (localStorage.getItem('status') === 'work' && localStorage.getItem('timer_status') === 'running') {
-            const points = document.getElementById(points-placeholder);
+            const points = document.getElementById(points - placeholder);
             points.innerHTML = localStorage.getItem('productivity_points');
             const pointsAmount = parseInt(points.innerHTML);
             points.innerHTML = pointsAmount + parseInt(localStorage.getItem('multiplicator'));
             localStorage.setItem('productivity_points', points.innerHTML);
         }
-    }, 1000)
+    }, 1000);
 }
