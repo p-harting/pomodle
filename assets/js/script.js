@@ -474,7 +474,7 @@ function startIdle() {
 
     productivityPointTimer = setInterval(function () {
         if (localStorage.getItem('status') === 'work' && localStorage.getItem('timer_status') === 'running') {
-            const points = document.getElementById(points - placeholder);
+            const points = document.getElementById('points');
             points.innerHTML = localStorage.getItem('productivity_points');
             const pointsAmount = parseInt(points.innerHTML);
             points.innerHTML = pointsAmount + parseInt(localStorage.getItem('multiplicator'));
