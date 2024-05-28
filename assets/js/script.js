@@ -424,7 +424,28 @@ async function loadShop() {
         buyButton.className = 'buy-button pink-button';
         buyButton.textContent = 'Buy';
         buyButton.setAttribute('data-name', items[i].name);
-        buyButton.setAttribute('data-cost', items[i].cost);
+
+        let selectedItem = null; // Initialize selectedItem outside of the if block
+        let allItems = localStorage.getItem('items');
+        allItems = JSON.parse(allItems);
+
+        if (allItems) { // Check if allItems is not null or undefined
+            for (let j = 0; j < allItems.length; j++) {
+                if (allItems[j].item === items[i].name) {
+                    selectedItem = allItems[j];
+                    break;
+                }
+            }
+        }
+
+        // Calculate the data-cost
+        if (selectedItem) {
+            const dataCost = items[i].cost * selectedItem.amount;
+            buyButton.setAttribute('data-cost', dataCost);
+        } else {
+            buyButton.setAttribute('data-cost', items[i].cost);
+        }
+
         buyButton.setAttribute('data-rate', items[i].rate);
         buyButton.addEventListener('click', buyItem);
         buttonContainer.appendChild(buyButton);
@@ -439,15 +460,16 @@ async function loadShop() {
     }
 
     // Update button states based on current points
+    updateShopPrices();
     updateButtonStates();
 }
 
 function updateButtonStates() {
     let points = parseInt(localStorage.getItem('productivity_points'));
-    const buyButtons = document.querySelectorAll('.buy-button');
+    let buyButtons = document.querySelectorAll('.buy-button');
 
-    buyButtons.forEach(button => {
-        const cost = parseInt(button.getAttribute('data-cost'));
+    buyButtons.forEach(function (button) {
+        let cost = parseInt(button.getAttribute('data-cost'));
         if (points < cost) {
             button.disabled = true;
             button.classList.add('grey-button');
@@ -458,8 +480,24 @@ function updateButtonStates() {
     });
 
     // Update points display
-    const pointsDisplay = document.getElementById('points');
+    let pointsDisplay = document.getElementById('points');
     pointsDisplay.innerHTML = points;
+}
+
+function updateShopPrices() {
+    const shopItems = document.querySelectorAll('.shop-item');
+
+    shopItems.forEach(function (shopItem) {
+        const buyButton = shopItem.querySelector('.buy-button');
+        if (buyButton) {
+            const itemCost = buyButton.getAttribute('data-cost');
+            const itemCostElement = shopItem.querySelector('.item-cost');
+            if (itemCostElement) {
+                itemCostElement.textContent = `Cost: ${itemCost}`;
+                console.log(`Cost: ${itemCost}`);
+            }
+        }
+    });
 }
 
 function buyItem(event) {
@@ -475,13 +513,15 @@ function buyItem(event) {
         alert('Purchase successful!');
         const multiplicator = parseInt(localStorage.getItem('multiplicator'));
         localStorage.setItem('multiplicator', multiplicator + parseInt(button.getAttribute('data-rate')));
+        loadShop();
+        updateShopPrices();
 
-        // Update button states based on new points
-        updateButtonStates();
     } else {
         alert('Not enough points!');
     }
 }
+
+
 
 function saveBoughtItem(name) {
     let items = localStorage.getItem('items');
