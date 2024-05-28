@@ -257,6 +257,9 @@ function startTimerFromSavedState() {
     }
 }
 
+/**
+ * Creates a new history item for the finished task, updates the productivity points, and refreshes the UI.
+ */
 function createHistoryItem() {
     const historyContainer = document.getElementById('history-container');
     const finishedTask = document.createElement('div');
@@ -282,6 +285,10 @@ function createHistoryItem() {
     getQuote();
 }
 
+
+/**
+* Saves a new history item consisting of a task name and its associated reward to the local storage.
+*/
 function saveHistoryItem(taskName, reward) {
     let history = localStorage.getItem('history');
 
@@ -302,6 +309,9 @@ function saveHistoryItem(taskName, reward) {
     localStorage.setItem('history', JSON.stringify(history));
 }
 
+/**
+* Loads the history of tasks and their associated rewards from local storage and displays them in the history container.
+*/
 function loadHistory() {
     const historyContainer = document.getElementById('history-container');
     let history = localStorage.getItem('history');
@@ -333,6 +343,10 @@ function loadHistory() {
     }
 }
 
+/**
+* Opens the specified tab by displaying its content and setting its corresponding tab link as active.
+* Hides all other tab contents and removes the 'active' class from other tab links.
+*/
 function openTab(event, tabName) {
     const tabcontent = document.getElementsByClassName('tabcontent');
     for (let i = 0; i < tabcontent.length; i++) {
@@ -348,6 +362,11 @@ function openTab(event, tabName) {
     event.currentTarget.className += ' active';
 }
 
+/**
+* Loads the items available in the shop by fetching data from the 'items.json' file.
+* Initializes and updates button states based on the user's points and previously purchased items.
+* Listens for click events on buy buttons to handle item purchase.
+*/
 async function loadShop() {
     const response = await fetch('assets/items.json');
     const items = await response.json();
@@ -449,6 +468,11 @@ async function loadShop() {
     updateButtonStates();
 }
 
+
+/**
+* Updates the states of buy buttons based on the user's productivity points.
+* Disables buy buttons with costs higher than the available points and applies a grey style.
+*/
 function updateButtonStates() {
     let points = parseFloat(localStorage.getItem('productivity_points'));
     let buyButtons = document.querySelectorAll('.buy-button');
@@ -469,6 +493,9 @@ function updateButtonStates() {
     pointsDisplay.innerHTML = points;
 }
 
+/**
+* Updates the displayed prices of items in the shop based on their data-cost attributes.
+*/
 function updateShopPrices() {
     const shopItems = document.querySelectorAll('.shop-item');
 
@@ -484,6 +511,10 @@ function updateShopPrices() {
     });
 }
 
+
+/**
+* Handles the purchase of an item when its corresponding buy button is clicked.
+*/
 function buyItem(event) {
     const button = event.target;
     const itemCost = parseInt(button.getAttribute('data-cost'));
@@ -505,8 +536,9 @@ function buyItem(event) {
     }
 }
 
-
-
+/**
+* Saves the purchased item by updating the local storage with the item's name and quantity.
+*/
 function saveBoughtItem(name) {
     let items = localStorage.getItem('items');
 
@@ -539,6 +571,9 @@ function saveBoughtItem(name) {
     localStorage.setItem('items', JSON.stringify(items));
 }
 
+/**
+* Retrieves a random quote from the Quotable API and displays it.
+*/
 async function getQuote() {
     const response = await fetch('https://api.quotable.io/random');
     const quotes = await response.json();
@@ -548,6 +583,10 @@ async function getQuote() {
     author.innerHTML = `-${quotes.author}`;
 }
 
+/**
+* Starts the idle timer for earning productivity points.
+* Points are only incremented if the user's status is set to 'work' and the timer is running.
+*/
 function startIdle() {
     if (productivityPointTimer) {
         clearInterval(productivityPointTimer);
@@ -566,6 +605,11 @@ function startIdle() {
     }, 1000);
 }
 
+
+/**
+* Sets up an audio player with basic functionalities such as play/pause, previous/next song,
+* seek bar control, and volume control.
+*/
 function audioPlayer() {
     const audioPlayer = document.createElement('audio');
     const playPauseButton = document.getElementById('play-pause');
@@ -635,6 +679,9 @@ function audioPlayer() {
 }
 
 
+/**
+* Sets up the functionality to load and display the help section pop up.
+*/
 function loadHelp() {
     document.getElementById("help-button").addEventListener("click", function () {
         document.getElementById("help").style.display = "block";
