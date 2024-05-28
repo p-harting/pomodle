@@ -69,6 +69,8 @@ async function loadContent(page) {
     // Load a new quote
     getQuote();
 
+    // Initialize the audio player
+    audioPlayer();
 
     // Checks if taskname exist and changes it
     if (localStorage.getItem('taskname') === null) {
@@ -463,7 +465,7 @@ function buyItem(event) {
         alert('Purchase successful!');
         const multiplicator = parseInt(localStorage.getItem('multiplicator'));
         localStorage.setItem('multiplicator', multiplicator + parseInt(button.getAttribute('data-rate')));
-        
+
         // Update button states based on new points
         updateButtonStates();
     } else {
@@ -528,3 +530,68 @@ function startIdle() {
         }
     }, 1000);
 }
+
+function audioPlayer() {
+    const audioPlayer = document.createElement('audio');
+    const playPauseButton = document.getElementById('play-pause');
+    const prevButton = document.getElementById('prev-song');
+    const nextButton = document.getElementById('next-song');
+    const seekBar = document.getElementById('seek-bar');
+    const volumeControl = document.getElementById('volume-control');
+  
+    // Array of music files
+    const musicFiles = [
+      'assets/music/layitoff.mp3',
+      'assets/music/space.mp3',
+      'assets/music/timeout.mp3',
+      'assets/music/toolate.mp3'
+    ];
+  
+    let currentSongIndex = 0;
+  
+    // Function to load and play the current song
+    function loadSong() {
+      audioPlayer.src = musicFiles[currentSongIndex];
+      audioPlayer.play();
+    }
+  
+    // Play/Pause functionality
+    playPauseButton.addEventListener('click', function() {
+      if (audioPlayer.paused) {
+        audioPlayer.play();
+        playPauseButton.innerHTML = '<i class="fa fa-pause"></i>';
+      } else {
+        audioPlayer.pause();
+        playPauseButton.innerHTML = '<i class="fa fa-play"></i>';
+      }
+    });
+  
+    // Previous song functionality
+    prevButton.addEventListener('click', function() {
+      currentSongIndex = (currentSongIndex - 1 + musicFiles.length) % musicFiles.length;
+      loadSong();
+    });
+  
+    // Next song functionality
+    nextButton.addEventListener('click', function() {
+      currentSongIndex = (currentSongIndex + 1) % musicFiles.length;
+      loadSong();
+    });
+  
+    // Seek bar functionality
+    audioPlayer.addEventListener('timeupdate', function() {
+      seekBar.value = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+    });
+  
+    seekBar.addEventListener('input', function() {
+      audioPlayer.currentTime = (seekBar.value / 100) * audioPlayer.duration;
+    });
+  
+    // Volume control functionality
+    volumeControl.addEventListener('input', function() {
+      audioPlayer.volume = volumeControl.value;
+    });
+  
+    // Load the first song
+    loadSong();
+  }
