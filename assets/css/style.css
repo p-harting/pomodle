@@ -10,6 +10,12 @@
 }
 
 /* General styles */
+:root {
+    --dark-gray: #0e1217;
+    --purple: #E669FB;
+    --pink: #fc538d;
+}
+
 body {
     height: 100%;
     display: flex;
@@ -20,7 +26,7 @@ body {
     background-attachment: fixed;
     background-position: center;
     margin: 0;
-    background-color: #0e1217;
+    background-color: var(--dark-gray);
     color: white;
     align-items: center;
 }
@@ -30,6 +36,7 @@ main {
     max-width: 1100px;
 }
 
+/* Text styles */
 h1 {
     font-family: "Roboto", sans-serif;
     padding: 4px 0;
@@ -40,8 +47,8 @@ h2 {
     font-family: "Roboto", sans-serif;
     padding: 4px 0;
     font-size: calc(25px + 0.2vw);
-    background: #E669FB;
-    background: linear-gradient(to right, #E669FB 0%, #fc538d 100%);
+    background: var(--purple);
+    background: linear-gradient(to right, var(--purple) 0%, var(--pink) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -60,7 +67,24 @@ p {
     color: white;
 }
 
-/* Index */
+/* Button styles */
+.pink-button {
+    background-color: var(--pink);
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    border-radius: 4px;
+}
+
+.grey-button {
+    background-color: grey;
+    cursor: not-allowed;
+}
+
+/* Index page */
+/* Navbar */
 header {
     display: flex;
     flex-direction: row;
@@ -82,7 +106,7 @@ header {
     border-radius: 50%;
     width: 50px;
     height: 50px;
-    background-color: #E669FB;
+    background-color: var(--purple);
     justify-content: space-around;
     align-items: center;
     margin: 10px 20px;
@@ -92,7 +116,7 @@ header {
     font-size: 20px;
 }
 
-/* Login */
+/* Login page */
 #login {
     display: flex;
     flex-direction: column;
@@ -134,7 +158,7 @@ header {
 #login-form input[type="submit"] {
     width: 100%;
     padding: 10px;
-    background-color: #fc538d;
+    background-color: var(--pink);
     border: none;
     border-radius: 4px;
     color: white;
@@ -147,7 +171,8 @@ header {
     font-family: "Poppins", sans-serif;
 }
 
-/* Main */
+/* Main page */
+/* Edit taskname */
 #taskname-container {
     display: flex;
     flex-direction: row;
@@ -166,27 +191,13 @@ header {
     flex-grow: 1;
 }
 
-.main-container {
-    margin: 15px 20px;
-}
-
 #edit {
     padding: 4px 8px;
 }
 
-.pink-button {
-    background-color: #fc538d;
-    color: white;
-    font-weight: bold;
-    border: none;
-    cursor: pointer;
-    outline: none;
-    border-radius: 4px;
-}
-
-.grey-button {
-    background-color: grey;
-    cursor: not-allowed;
+/* Timer */
+.main-container {
+    margin: 15px 20px;
 }
 
 #timer-container {
@@ -198,6 +209,11 @@ header {
 
 #timer {
     font-size: 40px;
+}
+
+#button-container {
+    display: flex;
+    flex-direction: row;
 }
 
 #timer-container button {
@@ -229,36 +245,10 @@ header {
     color: black;
 }
 
-#button-container {
-    display: flex;
-    flex-direction: row;
-}
-
-#history-container {
-    margin: 15px 20px;
-}
-
-.history-item {
-    display: flex;
-    flex-direction: row;
-    padding: 4px 8px;
-    justify-content: space-between;
-    margin: 10px 0;
-    padding: 4px 8px;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 4px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-}
-
-#quote-container {
-    margin: 15px 20px;
-}
-
+/* Tab menu */
 .tab {
     overflow: hidden;
-    background-color: #fc538d;
+    background-color: var(--pink);
     border-radius: 4px 4px 0 0;
     padding: 8px 4px;
 }
@@ -286,6 +276,7 @@ header {
     -webkit-backdrop-filter: blur(5px);
 }
 
+/* Shop */
 #shop-container {
     flex-direction: column;
     overflow-y: auto;
@@ -316,7 +307,31 @@ header {
     padding: 4px 8px;
 }
 
-/* Footer */
+/* History */
+#history-container {
+    margin: 15px 20px;
+}
+
+.history-item {
+    display: flex;
+    flex-direction: row;
+    padding: 4px 8px;
+    justify-content: space-between;
+    margin: 10px 0;
+    padding: 4px 8px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+/* Quotes */
+#quote-container {
+    margin: 15px 20px;
+}
+
+/* Footer / Music Player */
 #music-player {
     position: fixed;
     bottom: 0;
@@ -421,10 +436,12 @@ header {
 /* Media query: tablets */
 @media screen and (min-width: 768px) {
 
+    /* Navbar */
     #profile-picture {
         display: flex;
     }
 
+    /* Footer / Music Player */
     #music-player {
         flex-direction: row;
         padding: 10px;
