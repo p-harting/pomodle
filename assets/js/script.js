@@ -408,6 +408,13 @@ async function loadShop() {
         itemCost.appendChild(itemCostText);
         itemDetails.appendChild(itemCost);
 
+        // Create and append item rate
+        const itemRate = document.createElement('p');
+        itemRate.className = 'item-rate';
+        const itemRateText = document.createTextNode(`Rate: ${items[i].rate}`);
+        itemRate.appendChild(itemRateText);
+        itemDetails.appendChild(itemRate);
+
         // Create a div for the buy button
         const buttonContainer = document.createElement('div');
         buttonContainer.className = 'button-container';
