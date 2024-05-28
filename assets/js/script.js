@@ -44,6 +44,8 @@ async function loadContent(page) {
             localStorage.setItem('goal', goalInput);
             loadContent('main.html');
         });
+    } else {
+        document.getElementById('music-player').style.display = 'flex';
     }
 
     // Load history from localStorage
