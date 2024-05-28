@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         localStorage.setItem('timer_status', 'stopped');
         localStorage.setItem('status', 'none');
         localStorage.setItem('productivity_points', 0);
+        updateButtonStates();
         localStorage.setItem('multiplicator', 0);
         loadContent('login.html');
     }
@@ -285,6 +286,7 @@ function createHistoryItem() {
 
     saveHistoryItem(localStorage.getItem('taskname'), '100 PP');
     localStorage.setItem('productivity_points', parseInt(localStorage.getItem('productivity_points', '0')) + 100);
+    updateButtonStates();
     const points = document.getElementById('points');
     points.innerHTML = localStorage.getItem('productivity_points');
     getQuote();
@@ -362,6 +364,9 @@ async function loadShop() {
 
     const shopContainer = document.getElementById('shop-container');
 
+    // Clear existing items
+    shopContainer.innerHTML = '';
+
     // Loop through each item in the JSON array
     for (let i = 0; i < items.length; i++) {
         const shopItem = document.createElement('div');
@@ -372,7 +377,6 @@ async function loadShop() {
         itemImage.className = 'item-image';
         const imageName = items[i].name.toLowerCase().split(' ').join('-');
         itemImage.src = `assets/images/items/${imageName}.jpg`;
-
 
         // Create a div for item details
         const itemDetails = document.createElement('div');
@@ -421,6 +425,29 @@ async function loadShop() {
         // Append the shop item to the shop container
         shopContainer.appendChild(shopItem);
     }
+
+    // Update button states based on current points
+    updateButtonStates();
+}
+
+function updateButtonStates() {
+    let points = parseInt(localStorage.getItem('productivity_points'));
+    const buyButtons = document.querySelectorAll('.buy-button');
+
+    buyButtons.forEach(button => {
+        const cost = parseInt(button.getAttribute('data-cost'));
+        if (points < cost) {
+            button.disabled = true;
+            button.classList.add('grey-button');
+        } else {
+            button.disabled = false;
+            button.classList.remove('grey-button');
+        }
+    });
+
+    // Update points display
+    const pointsDisplay = document.getElementById('points');
+    pointsDisplay.innerHTML = points;
 }
 
 function buyItem(event) {
@@ -431,10 +458,14 @@ function buyItem(event) {
     if (points >= itemCost) {
         points -= itemCost;
         localStorage.setItem('productivity_points', points);
+        updateButtonStates();
         saveBoughtItem(button.getAttribute('data-name'));
         alert('Purchase successful!');
         const multiplicator = parseInt(localStorage.getItem('multiplicator'));
         localStorage.setItem('multiplicator', multiplicator + parseInt(button.getAttribute('data-rate')));
+        
+        // Update button states based on new points
+        updateButtonStates();
     } else {
         alert('Not enough points!');
     }
@@ -493,6 +524,7 @@ function startIdle() {
             const pointsAmount = parseInt(points.innerHTML);
             points.innerHTML = pointsAmount + parseInt(localStorage.getItem('multiplicator'));
             localStorage.setItem('productivity_points', points.innerHTML);
+            updateButtonStates();
         }
     }, 1000);
 }

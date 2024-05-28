@@ -183,6 +183,11 @@ header {
     border-radius: 4px;
 }
 
+.grey-button {
+    background-color: grey;
+    cursor: not-allowed;
+}
+
 #timer-container {
     display: flex;
     flex-direction: column;
