@@ -163,11 +163,16 @@ function startTimer(seconds) {
         return;
     }
 
-    // Starts work timer based on status
-    if (localStorage.getItem('timer_status') === 'stopped' &&
-        (localStorage.getItem('status') === 'work' ||
-            localStorage.getItem('status') === 'none')) {
+    // Start timer based on the current status
+    const status = localStorage.getItem('status');
+    const timerStatus = localStorage.getItem('timer_status');
+    const timeLeft = parseInt(localStorage.getItem('time_left'));
 
+    if (timerStatus === 'paused' && timeLeft > 0) {
+        currentValue = timeLeft;
+    }
+
+    if (status === 'work' || status === 'none') {
         localStorage.setItem('timer_status', 'running');
         localStorage.setItem('status', 'work');
 
@@ -183,29 +188,7 @@ function startTimer(seconds) {
                 startTimer(relaxTime);
             }
         }, 1000);
-    } // Checks if timer is paused and starts with saved time
-    else if (localStorage.getItem('timer_status') === 'paused') {
-        localStorage.setItem('timer_status', 'running');
-        let currentValue = localStorage.getItem('time_left');
-        workTimer = setInterval(function () {
-            if (currentValue > 0) {
-                currentValue -= 1;
-                timer.innerHTML = formatTime(currentValue);
-            } else {
-                if (localStorage.getItem('status') === 'work') {
-                    localStorage.setItem('status', 'relax');
-                    clearInterval(workTimer);
-                    workTimer = null;
-                    startTimer(relaxTime);
-                } else if (localStorage.getItem('status') === 'relax') {
-                    localStorage.setItem('status', 'work');
-                    clearInterval(relaxTimer);
-                    relaxTimer = null;
-                    startTimer(workTime);
-                }
-            }
-        }, 1000);
-    } else if (localStorage.getItem('status') === 'relax') {
+    } else if (status === 'relax') {
         localStorage.setItem('timer_status', 'running');
 
         relaxTimer = setInterval(function () {
