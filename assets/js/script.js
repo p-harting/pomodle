@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     } else {
         localStorage.setItem('timer_status', 'stopped');
         localStorage.setItem('status', 'none');
-        localStorage.setItem('productivity_points', 0);
+        localStorage.setItem('productivity_points', 0.0);
         updateButtonStates();
         localStorage.setItem('multiplicator', 0);
         await loadContent('login.html');
@@ -275,7 +275,7 @@ function createHistoryItem() {
     historyContainer.appendChild(finishedTask);
 
     saveHistoryItem(localStorage.getItem('taskname'), '100 PP');
-    localStorage.setItem('productivity_points', parseInt(localStorage.getItem('productivity_points', '0')) + 100);
+    localStorage.setItem('productivity_points', parseFloat(localStorage.getItem('productivity_points', '0.0')) + 100);
     updateButtonStates();
     const points = document.getElementById('points');
     points.innerHTML = localStorage.getItem('productivity_points');
@@ -450,7 +450,7 @@ async function loadShop() {
 }
 
 function updateButtonStates() {
-    let points = parseInt(localStorage.getItem('productivity_points'));
+    let points = parseFloat(localStorage.getItem('productivity_points'));
     let buyButtons = document.querySelectorAll('.buy-button');
 
     buyButtons.forEach(function (button) {
@@ -479,7 +479,6 @@ function updateShopPrices() {
             const itemCostElement = shopItem.querySelector('.item-cost');
             if (itemCostElement) {
                 itemCostElement.textContent = `Cost: ${itemCost}`;
-                console.log(`Cost: ${itemCost}`);
             }
         }
     });
@@ -556,11 +555,12 @@ function startIdle() {
 
     productivityPointTimer = setInterval(function () {
         if (localStorage.getItem('status') === 'work' && localStorage.getItem('timer_status') === 'running') {
-            const points = document.getElementById('points');
-            points.innerHTML = localStorage.getItem('productivity_points');
-            const pointsAmount = parseInt(points.innerHTML);
-            points.innerHTML = pointsAmount + parseInt(localStorage.getItem('multiplicator'));
-            localStorage.setItem('productivity_points', points.innerHTML);
+            const pointsElement = document.getElementById('points');
+            let points = parseFloat(localStorage.getItem('productivity_points'));
+            const increment = parseFloat(localStorage.getItem('multiplicator')) / 10;
+            points += increment;
+            localStorage.setItem('productivity_points', points.toFixed(1));
+            pointsElement.innerHTML = points.toFixed(1);
             updateButtonStates();
         }
     }, 1000);
