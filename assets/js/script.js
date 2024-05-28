@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         localStorage.setItem('productivity_points', 0);
         updateButtonStates();
         localStorage.setItem('multiplicator', 0);
-        loadContent('login.html');
+        await loadContent('login.html');
     }
 });
 
@@ -38,10 +38,10 @@ async function loadContent(page) {
     if (page === 'login.html') {
         document.getElementById('login-form').addEventListener('submit', function (event) {
             event.preventDefault();
-            let username = document.getElementById('username').value;
-            let goal = document.getElementById('goal').value;
-            localStorage.setItem('username', username);
-            localStorage.setItem('goal', goal);
+            const usernameInput = document.getElementById('username-input').value;
+            const goalInput = document.getElementById('goal-input').value;
+            localStorage.setItem('username', usernameInput);
+            localStorage.setItem('goal', goalInput);
             loadContent('main.html');
         });
     }
@@ -62,7 +62,7 @@ async function loadContent(page) {
     // Start Idle Interval
     startIdle();
 
-    // Change username
+    // Change username in header
     const username = document.getElementById('username');
     username.innerHTML = localStorage.getItem('username');
 
