@@ -347,6 +347,10 @@ header {
     flex-shrink: 0;
 }
 
+.fa-step-backward, .fa-play, .fa-volume-up {
+    color: black;
+}
+
 #music-player input[type="range"] {
     -webkit-appearance: none;
     appearance: none;

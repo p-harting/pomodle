@@ -576,19 +576,21 @@ function audioPlayer() {
 
     // Array of music files
     const musicFiles = [
-        'assets/music/layitoff.mp3',
         'assets/music/space.mp3',
+        'assets/music/layitoff.mp3',
         'assets/music/timeout.mp3',
         'assets/music/toolate.mp3'
     ];
 
     let currentSongIndex = 0;
 
-    // Function to load and play the current song
+    // Function to load the current song
     function loadSong() {
         audioPlayer.src = musicFiles[currentSongIndex];
-        audioPlayer.play();
     }
+
+    // Load the first song but don't play it
+    loadSong();
 
     // Play/Pause functionality
     playPauseButton.addEventListener('click', function () {
@@ -605,12 +607,16 @@ function audioPlayer() {
     prevButton.addEventListener('click', function () {
         currentSongIndex = (currentSongIndex - 1 + musicFiles.length) % musicFiles.length;
         loadSong();
+        audioPlayer.play();
+        playPauseButton.innerHTML = '<i class="fa fa-pause"></i>';
     });
 
     // Next song functionality
     nextButton.addEventListener('click', function () {
         currentSongIndex = (currentSongIndex + 1) % musicFiles.length;
         loadSong();
+        audioPlayer.play();
+        playPauseButton.innerHTML = '<i class="fa fa-pause"></i>';
     });
 
     // Seek bar functionality
@@ -626,10 +632,8 @@ function audioPlayer() {
     volumeControl.addEventListener('input', function () {
         audioPlayer.volume = volumeControl.value;
     });
-
-    // Load the first song
-    loadSong();
 }
+
 
 function loadHelp() {
     document.getElementById("help-button").addEventListener("click", function () {
