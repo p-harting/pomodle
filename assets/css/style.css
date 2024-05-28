@@ -173,6 +173,16 @@ header {
     padding: 4px 8px;
 }
 
+.pink-button {
+    background-color: #fc538d;
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    border-radius: 4px;
+}
+
 #timer-container {
     display: flex;
     flex-direction: column;

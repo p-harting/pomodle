@@ -405,7 +405,7 @@ async function loadShop() {
 
         // Create and append buy button
         const buyButton = document.createElement('button');
-        buyButton.className = 'buy-button';
+        buyButton.className = 'buy-button pink-button';
         buyButton.textContent = 'Buy';
         buyButton.setAttribute('data-name', items[i].name);
         buyButton.setAttribute('data-cost', items[i].cost);
