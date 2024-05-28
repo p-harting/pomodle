@@ -1,13 +1,17 @@
+<!-- Main section -->
 <section>
+    <!-- Taskname -->
     <div id="taskname-container">
         <div id="taskname">Taskname</div>
         <button id="edit" class="pink-button">Edit</button>
     </div>
     <div class="main-container">
+        <!-- Tabs -->
         <div class="tab">
             <button class="tablinks" onclick="openTab(event, 'timer-container')">Timer</button>
             <button class="tablinks" onclick="openTab(event, 'shop-container')">Shop</button>
           </div>
+        <!-- Timer -->
         <div id="timer-container" class="tabcontent">
             <p id="timer">00:00</p>
             <div id="button-container">
@@ -16,12 +20,15 @@
                 <button id="reset"><i class="fa-solid fa-rotate-right"></i></button>
             </div>
         </div>
+        <!-- Shop -->
         <div id="shop-container" class="tabcontent">
         </div>
     </div>
+    <!-- History -->
     <div id="history-container">
         <h2>History</h2>
     </div>
+    <!-- Quotes -->
     <div id="quote-container">
         <p id="quote"></p>
         <p id="author"></p>
