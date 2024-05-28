@@ -410,7 +410,7 @@ header {
     color: black;
 }
 
-.help-body p {
+.help-body p, .help-body h3 {
     color: black;
 }
 
