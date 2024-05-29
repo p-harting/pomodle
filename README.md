@@ -125,7 +125,7 @@ For Pomodle, wireframes were meticulously crafted to ensure an intuitive and use
 
 ### Color Palette
 
-![Accessible color palette](assets/docs/ux/colour-palette.png)
+![Accessible color palette](assets/docs/ux/color-palette.png)
 
 For Pomodle, a vibrant and engaging color palette has been carefully selected to evoke the energy and motivation of a productive workspace.
 
@@ -154,61 +154,61 @@ Both fonts are imported from Google Fonts, ensuring a consistent and visually ap
 
 ### Login Page
 
-![Login Page](/assets/docs/)
+![Login Page](assets/docs/features/login.png)
 
 -   A clean and simple login page where users can enter their username and set a daily goal, making it easy to get started with Pomodle.
 
 ### Pomodoro Timer
 
-![Pomodoro Timer](/assets/docs/)
+![Pomodoro Timer](assets/docs/features/pomodoro-timer.png)
 
 -   A sleek and intuitive Pomodoro timer that helps users stay focused and on track, with customizable task names to fit their specific needs and goals.
 
 ### Shop
 
-![Shop](/assets/docs/)
+![Shop](assets/docs/features/shop.png)
 
 -   A fun and engaging shop where users can browse and purchase idle items to enhance their Pomodoro experience.
 
 ### Task History
 
-![Task History](/assets/docs/)
+![Task History](assets/docs/features/history.png)
 
 -   A convenient task history feature that allows users to track their progress and stay motivated, providing a clear and concise overview of completed tasks.
 
 ### Help Section
 
-![Help Section](/assets/docs/)
+![Help Section](assets/docs/features/pomodoro-timer.png)
 
 -   A comprehensive help section that provides users with a step-by-step guide on how to use Pomodle, ensuring a seamless experience.
 
 ### Audio Player
 
-![Audio Player](/assets/docs/)
+![Audio Player](assets/docs/features/audioplayer.png)
 
 -   A built-in audio player featuring self-made lofi songs, designed to help users relax and stay focused during their Pomodoro sessions.
 
 ### Editable Task Name
 
-![Editable Task Name](/assets/docs/)
+![Editable Task Name](assets/docs/features/taskname.png)
 
 -   Users can easily name their tasks to fit their needs, making it easy to stay organized and focused.
 
 ### Timer Controls
 
-![Timer Controls](/assets/docs/)
+![Timer Controls](assets/docs/features/timer-controls.png)
 
 -   Users can pause the timer when needed, and resume when they're ready to refocus, or reset the timer to start fresh when they're ready to start a new Pomodoro session.
 
 ### Motivation Quote Section
 
-![Motivation Quote](/assets/docs/)
+![Motivation Quote](assets/docs/features/quote.png)
 
 -   A daily dose of motivation in the API-powered quote section, providing users with a new quote every session to keep them inspired and motivated.
 
 ### Navigation Bar
 
-![Navigation Bar](/assets/docs/)
+![Navigation Bar](assets/docs/features/navbar.png)
 
 -   The navigation bar displays the user's username and productivity points, tracking their progress and providing a clear view of their accomplishments.
 
