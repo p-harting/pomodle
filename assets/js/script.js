@@ -187,6 +187,8 @@ function startTimer(seconds) {
                 timer.innerHTML = formatTime(currentValue);
             } else {
                 clearInterval(workTimer);
+                const audio = new Audio('/assets/music/notification.mp3');
+                audio.play();
                 workTimer = null;
                 createHistoryItem();
                 localStorage.setItem('status', 'relax');
