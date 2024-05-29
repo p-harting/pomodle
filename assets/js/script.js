@@ -691,3 +691,16 @@ function loadHelp() {
         document.getElementById("help").style.display = "none";
     });
 }
+
+/**
+* Validates the input of the username
+*/
+function validateUsernam() {
+    const input = document.getElementById('username-input');
+    const trimmedValue = input.value.trim();
+    if (trimmedValue.length >= 1 && trimmedValue.length <= 12) {
+        input.setCustomValidity('');
+    } else {
+        input.setCustomValidity('Username must be between 1 and 12 characters.');
+    }
+}
