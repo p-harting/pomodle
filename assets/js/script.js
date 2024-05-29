@@ -32,6 +32,24 @@ document.addEventListener('DOMContentLoaded', async function () {
     }
 });
 
+document.addEventListener("visibilitychange", function () {
+    if (document.hidden) {
+        if (localStorage.getItem('status') === 'none') {
+            document.title = "It's time to be productive!";
+        } else if (localStorage.getItem('status') === 'work' && (localStorage.getItem('timer_status') === 'running')) {
+            document.title = 'Productivity mode activated...';
+        } else if (localStorage.getItem('status') === 'work' && (localStorage.getItem('timer_status') === 'paused')) {
+            document.title = "It's time to be productive!";
+        } else if (localStorage.getItem('status') === 'pause') {
+            document.title = 'Relax mode activated...';
+        } else {
+            document.title = 'Pomodoro';
+        }
+    } else {
+        document.title = 'Pomodle';
+    }
+});
+
 /**
  * Loads content from a specified page URL and replaces the HTML content of the main container element with it.
  */
