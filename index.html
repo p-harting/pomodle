@@ -12,7 +12,15 @@
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
     <!-- Load fontawesome first -->
-    <script type="text/javascript"> (function() { var css = document.createElement('link'); css.href = 'https://use.fontawesome.com/releases/v5.1.0/css/all.css'; css.rel = 'stylesheet'; css.type = 'text/css'; document.getElementsByTagName('head')[0].appendChild(css); })(); </script>
+    <script type="text/javascript">
+        (function () {
+            var css = document.createElement('link');
+            css.href = 'https://use.fontawesome.com/releases/v5.1.0/css/all.css';
+            css.rel = 'stylesheet';
+            css.type = 'text/css';
+            document.getElementsByTagName('head')[0].appendChild(css);
+        })();
+    </script>
 </head>
 
 <body>
@@ -40,27 +48,37 @@
         </div>
         <div class="help-body">
             <h3>Task Management:</h3>
-            <p>To play Pomodle effectively, start by entering your task name in the designated area at the top of the screen. This will be the task you'll focus on during your Pomodoro sessions.</p>
-            
+            <p>To play Pomodle effectively, start by entering your task name in the designated area at the top of the
+                screen. This will be the task you'll focus on during your Pomodoro sessions.</p>
+
             <h3>Pomodoro Timer:</h3>
-            <p>Each Pomodoro session lasts for 25 minutes. Your goal is to complete the task within this time frame and achieve 100 Productivity Points (PP). You'll earn PP based on your focus and dedication to the task.</p>
-            
+            <p>Each Pomodoro session lasts for 25 minutes. Your goal is to complete the task within this time frame and
+                achieve 100 Productivity Points (PP). You'll earn PP based on your focus and dedication to the task.</p>
+
             <h3>Idle Items and Shop:</h3>
-            <p>In the shop, you can purchase special idle items that enhance your productivity. Each item has a rate, indicating how many Productivity Points (PP) you'll earn per second while using it. Spend your earned PP wisely to maximize your efficiency!</p>
-            
+            <p>In the shop, you can purchase special idle items that enhance your productivity. Each item has a rate,
+                indicating how many Productivity Points (PP) you'll earn per second while using it. Spend your earned PP
+                wisely to maximize your efficiency!</p>
+
             <h3>Music Player:</h3>
-            <p>For an immersive work experience, you can listen to music while using Pomodle. Navigate to the bottom of the screen to access the music player and select your preferred tracks to stay motivated and focused.</p>
+            <p>For an immersive work experience, you can listen to music while using Pomodle. Navigate to the bottom of
+                the screen to access the music player and select your preferred tracks to stay motivated and focused.
+            </p>
         </div>
     </section>
     <!-- Footer / Music Player -->
     <footer>
         <div id="music-player">
-            <button id="prev-song"><i class="fa fa-step-backward"></i></button>
-            <button id="play-pause"><i class="fa fa-play"></i></button>
-            <button id="next-song"><i class="fa fa-step-forward"></i></button>
+            <div id="play-controls">
+                <button id="prev-song"><i class="fa fa-step-backward"></i></button>
+                <button id="play-pause"><i class="fa fa-play"></i></button>
+                <button id="next-song"><i class="fa fa-step-forward"></i></button>
+            </div>
             <input type="range" id="seek-bar" min="0" max="100" value="0">
-            <i class="fa fa-volume-up"></i>
-            <input type="range" id="volume-control" min="0" max="1" step="0.01" value="1">
+            <div id="audio-controls">
+                <i class="fa fa-volume-up"></i>
+                <input type="range" id="volume-control" min="0" max="1" step="0.01" value="1">
+            </div>
             <button id="help-button"><i class="fa-solid fa-circle-question"></i></button>
         </div>
     </footer>

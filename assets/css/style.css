@@ -337,7 +337,7 @@ header {
     bottom: 0;
     left: 0;
     width: 100%;
-    background-color: #d3d3d3;
+    background-color: var(--dark-gray);
     display: none;
     flex-direction: column;
     align-items: center;
@@ -352,6 +352,7 @@ header {
 #music-player input[type="range"],
 #music-player i {
     margin: 5px 0;
+    color: white;
 }
 
 #music-player button {
@@ -369,7 +370,7 @@ header {
 #music-player input[type="range"] {
     -webkit-appearance: none;
     appearance: none;
-    background: #000;
+    background: white;
     height: 5px;
     width: 90%;
     border-radius: 5px;
@@ -383,7 +384,7 @@ header {
     appearance: none;
     width: 10px;
     height: 10px;
-    background: #000;
+    background: white;
     cursor: pointer;
     border-radius: 50%;
 }
@@ -399,6 +400,32 @@ header {
 #music-player i {
     font-size: 1.5em;
     flex-shrink: 0;
+}
+
+#play-controls {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+#play-controls button {
+    flex: 1;
+    text-align: center;
+}
+
+#audio-controls {
+    display: flex;
+    align-items: center;
+    width: 80%;
+}
+
+#audio-controls input[type="range"] {
+    flex: 1;
+    margin-right: 10px; /* Adjust spacing as needed */
+}
+
+#audio-controls i {
+    margin-left: 10px; /* Adjust spacing as needed */
 }
 
 /* Help popup */
@@ -445,6 +472,42 @@ header {
     #music-player {
         flex-direction: row;
         padding: 10px;
+        display: flex; /* Ensure it's displayed */
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    #play-controls, 
+    #audio-controls, 
+    #help-button {
+        margin: 0 10px;
+    }
+
+    #play-controls {
+        display: flex;
+        justify-content: space-between;
+        width: auto;
+    }
+
+    #audio-controls {
+        display: flex;
+        align-items: center;
+        width: auto;
+        flex-grow: 1;
+    }
+
+    #audio-controls input[type="range"] {
+        flex: 1;
+        margin-right: 10px;
+    }
+
+    #audio-controls i {
+        margin-left: 10px;
+    }
+
+    #seek-bar {
+        flex-grow: 2;
+        margin: 0 10px;
     }
 
     #music-player button,
