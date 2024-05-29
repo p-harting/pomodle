@@ -279,6 +279,7 @@ function createHistoryItem() {
 
     saveHistoryItem(localStorage.getItem('taskname'), '100 PP');
     localStorage.setItem('productivity_points', parseFloat(localStorage.getItem('productivity_points', '0.0')) + 100);
+    showToast('You may now relax.');
     updateButtonStates();
     const points = document.getElementById('points');
     points.innerHTML = localStorage.getItem('productivity_points');
@@ -525,14 +526,14 @@ function buyItem(event) {
         localStorage.setItem('productivity_points', points);
         updateButtonStates();
         saveBoughtItem(button.getAttribute('data-name'));
-        alert('Purchase successful!');
+        showToast('Purchase successful!');
         const multiplicator = parseInt(localStorage.getItem('multiplicator'));
         localStorage.setItem('multiplicator', multiplicator + parseInt(button.getAttribute('data-rate')));
         loadShop();
         updateShopPrices();
 
     } else {
-        alert('Not enough points!');
+        showToast('Not enough points!');
     }
 }
 
@@ -703,4 +704,27 @@ function validateUsernam() {
     } else {
         input.setCustomValidity('Username must be between 1 and 12 characters.');
     }
+}
+
+/**
+* Shows a toast in the bottom right corner
+*/
+function showToast(message) {
+    const toast = document.createElement('div');
+    toast.className = 'toast';
+    toast.innerText = message;
+    const toastContainer = document.getElementById('toast-container');
+    toastContainer.appendChild(toast);
+
+    setTimeout(function() {
+        toast.classList.add('show');
+    }, 100);
+
+    setTimeout(function() {
+        toast.classList.remove('show');
+        
+        setTimeout(function() {
+            toastContainer.removeChild(toast);
+        }, 500);
+    }, 3000);
 }

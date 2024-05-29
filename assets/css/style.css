@@ -466,6 +466,30 @@ header {
     color: black;
 }
 
+/* Toast */
+#toast-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.toast {
+    background-color: var(--pink);
+    color: #fff;
+    padding: 16px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateX(100%);
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
 /* Media query: tablets */
 @media screen and (min-width: 768px) {
 
