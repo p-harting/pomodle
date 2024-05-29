@@ -436,6 +436,7 @@ async function loadShop() {
         buyButton.className = 'buy-button pink-button';
         buyButton.textContent = 'Buy';
         buyButton.setAttribute('data-name', items[i].name);
+        buyButton.setAttribute('aria-label', `buy ${items[i].name}`);
 
         let selectedItem = null; // Initialize selectedItem outside of the if block
         let allItems = localStorage.getItem('items');

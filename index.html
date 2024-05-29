@@ -61,16 +61,16 @@
     <footer>
         <div id="music-player">
             <div id="play-controls">
-                <button id="prev-song"><i class="fa fa-step-backward"></i></button>
-                <button id="play-pause"><i class="fa fa-play"></i></button>
-                <button id="next-song"><i class="fa fa-step-forward"></i></button>
+                <button id="prev-song" aria-label="play previous song"><i class="fa fa-step-backward"></i></button>
+                <button id="play-pause" aria-label="play or pause song"><i class="fa fa-play"></i></button>
+                <button id="next-song" aria-label="play next song"><i class="fa fa-step-forward"></i></button>
             </div>
-            <input type="range" id="seek-bar" min="0" max="100" value="0">
+            <input type="range" id="seek-bar" min="0" max="100" value="0" aria-label="progress bar">
             <div id="audio-controls">
                 <i class="fa fa-volume-up"></i>
-                <input type="range" id="volume-control" min="0" max="1" step="0.01" value="1">
+                <input type="range" id="volume-control" min="0" max="1" step="0.01" value="1" aria-label="volume control">
             </div>
-            <button id="help-button"><i class="fa-solid fa-circle-question"></i></button>
+            <button id="help-button" aria-label="open help pop up"><i class="fa-solid fa-circle-question"></i></button>
         </div>
     </footer>
     <!-- Link to javascript files -->
