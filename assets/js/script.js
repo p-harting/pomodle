@@ -412,6 +412,7 @@ async function loadShop() {
         itemImage.className = 'item-image';
         const imageName = items[i].name.toLowerCase().split(' ').join('-');
         itemImage.src = `assets/images/items/${imageName}.jpg`;
+        itemImage.alt = items[i].name;
 
         // Create a div for item details
         const itemDetails = document.createElement('div');
