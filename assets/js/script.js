@@ -4,8 +4,8 @@ let relaxTimer;
 let productivityPointTimer;
 
 // Defines the pomodoro time spans
-const workTime = 10;
-const relaxTime = 5;
+const workTime = 1500;
+const relaxTime = 300;
 
 // Saves time left before reload
 window.addEventListener('beforeunload', function (event) {
@@ -187,7 +187,7 @@ function startTimer(seconds) {
                 timer.innerHTML = formatTime(currentValue);
             } else {
                 clearInterval(workTimer);
-                const audio = new Audio('/assets/music/notification.mp3');
+                const audio = new Audio('assets/music/notification.mp3');
                 audio.play();
                 workTimer = null;
                 createHistoryItem();
