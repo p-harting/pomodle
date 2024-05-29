@@ -421,11 +421,11 @@ header {
 
 #audio-controls input[type="range"] {
     flex: 1;
-    margin-right: 10px; /* Adjust spacing as needed */
+    margin-right: 10px; 
 }
 
 #audio-controls i {
-    margin-left: 10px; /* Adjust spacing as needed */
+    margin-left: 10px;
 }
 
 /* Help popup */
@@ -472,7 +472,7 @@ header {
     #music-player {
         flex-direction: row;
         padding: 10px;
-        display: flex; /* Ensure it's displayed */
+        display: none;
         justify-content: space-between;
         align-items: center;
     }
