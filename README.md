@@ -215,18 +215,68 @@ Both fonts are imported from Google Fonts, ensuring a consistent and visually ap
 ### Features to implement in the future
 
 ## Responsive Design
-
+- **Optimized Images:** All images on Pomodle are optimized for fast loading times, ensuring a smooth experience across various devices and screen sizes.
+- **Flexbox Layout:** The website extensively uses Flexbox to dynamically arrange elements, making optimal use of available space and maintaining a clean, organized look.
+- **Responsive Text:** Text size and spacing are calculated responsively, adjusting based on screen size and resolution to ensure readability and visual appeal on any device.
+- **Strategic Media Queries:** Media queries are strategically implemented to adapt the layout and design elements for different screen sizes, ensuring a consistent and user-friendly experience across desktops, tablets, and mobile devices.
 ## Testing
 ### Manual Testing
+For a thorough evaluation of the website's functionality, I conducted a series of manual tests across various platforms and devices. 
+
+- **Desktop Testing:** Verified compatibility using Chrome, Firefox, and Edge browsers on a Windows computer.
+- **Mobile Testing (Android):** Ensured responsiveness and functionality with Chrome and Firefox browsers on an Android device.
+- **Mobile Testing (iOS):** Tested compatibility and performance using Safari on an iOS device.
+- **User Feedback:** Solicited input from multiple users to assess website functionality across different devices and gather valuable feedback on user experience.
+- **Link Verification:** Manually inspected all internal and external links to ensure they direct users accurately.
+- **Input Validation:** Confirmed that the inputs work as intended, requiring valid inputs for submission.
+
+These rigorous tests ensure a seamless user experience across various platforms and devices.
 ### Functional Testing
+| Action                                                                                   | Expected Behavior                                                                      | Passed or Failed |
+|------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------|------------------|
+| Fill out the login form with valid username (1-12 characters, no spaces) and goal (1-24 characters) | The login button should be enabled and the login process should proceed successfully    | Passed           |
+| Fill out the login form with invalid username (less than 1 character or more than 12 characters) | An error message should be displayed indicating invalid username                        | Passed           |
+| Fill out the login form with invalid goal (less than 1 character or more than 24 characters) | An error message should be displayed indicating invalid goal                            | Passed           |
+| Fill out the login form with valid username and invalid goal                             | An error message should be displayed indicating invalid goal                            | Passed           |
+| Fill out the login form with invalid username and valid goal                             | An error message should be displayed indicating invalid username                        | Passed           |
+| Click on the "Buy" button in the shop to purchase an item                                | The item should be added to local storage and the rate increased         | Passed           |
+| Verify that prices increase when buying items in the shop                                | The prices of items in the shop should increase correctly                              | Passed           |
+| Test the idle timer by leaving the page open for a set amount of time                    | The idle timer should trigger correctly and display a toast message to the user     | Passed           |
+| Test the audio player by playing a song, pausing it, and then playing it again           | The audio player should play, pause, and play again correctly                          | Passed           |
+| Test the audio player by skipping to the next and previous songs                         | The audio player should skip to the next and previous songs correctly                   | Passed           |
+| Test the audio player by adjusting the volume                                            | The audio player should adjust the volume correctly                                    | Passed           |
+| Click on the "Help" button to open the help popup                                        | The help popup should open correctly and display the help content                       | Passed           |
+| Test the Pomodoro timer by starting, pausing, and resetting it                           | The Pomodoro timer should start, pause, and reset correctly                            | Passed           |
+
 ### Validator Testing
+#### HTML
+![HTML validator result](assets/docs/testing/html-testing.png)
+- No errors were detected on any page through the W3C HTML Validator.
+#### CSS
+![CSS validator result](assets/docs/testing/css-testing.png)
+- The W3C CSS Validator found no errors in the stylesheet.
+#### Jshint Testing
+- The Jshint Validator found no significant issues.
+#### Lighthouse
+**Screenshot of the desktop test results of the main page:**
+
+![Lighthouse desktop result](assets/docs/testing/lighthouse-desktop.png)
+
+**Screenshot of the mobile test results of the main page:**
+
+![Lighthouse desktop result](assets/docs/testing/lighthouse-mobile.png)
 ### Accessibility Testing
+To ensure optimal accessibility for all users, extensive color contrast testing was conducted using the [Coolors Contrast Checker](https://coolors.co/). The following images illustrate the results of the color contrast tests:
+
+![Test of color contrast dark](assets/docs/testing/contrast-dark.png)
+
+![Test of color contrast pink](assets/docs/testing/contrast-pink.png)
+
+These tests aimed to verify that text elements across the website maintain sufficient contrast against their respective backgrounds, thus ensuring readability and usability for individuals with visual impairments.
 ### Bugs
-
+- [✔] Pomodoro timer starting relax interval twice after being paused
 ## Deployment
-
 ### Deployment to GitHub Pages
-
 This section should describe the process you went through to deploy the project to a hosting platform (e.g. GitHub)
 
 -   The site was deployed to GitHub pages. The steps to deploy are as follows:
