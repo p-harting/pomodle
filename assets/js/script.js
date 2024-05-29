@@ -684,7 +684,7 @@ function audioPlayer() {
 */
 function loadHelp() {
     document.getElementById("help-button").addEventListener("click", function () {
-        document.getElementById("help").style.display = "block";
+        document.getElementById("help").style.display = "flex";
     });
 
     document.querySelector(".close-help").addEventListener("click", function () {

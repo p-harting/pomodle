@@ -434,7 +434,9 @@ header {
 /* Help popup */
 #help {
     display: none;
+    flex-direction: column;
     position: fixed;
+    overflow-y: auto;
     top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -442,7 +444,8 @@ header {
     border-radius: 4px;
     padding: 20px;
     z-index: 1000;
-    max-width: 80%;
+    width: 90%;
+    max-height: 60%;
 }
 
 .help-header {
@@ -469,6 +472,11 @@ header {
     /* Navbar */
     #profile-picture {
         display: flex;
+    }
+
+    /* Help popup */
+    #help {
+        max-width: 70%;
     }
 
     /* Footer / Music Player */
