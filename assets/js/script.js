@@ -723,7 +723,7 @@ function loadHelp() {
 /**
  * Validates the input of the username
  */
-function validateUsernam() {
+function validateUsername() {
     const input = document.getElementById('username-input');
     const trimmedValue = input.value.trim();
     if (trimmedValue.length >= 1 && trimmedValue.length <= 12) {
