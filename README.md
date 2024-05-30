@@ -47,7 +47,7 @@ Pomodle, a fusion of Pomodoro timer and idle game, was designed to revolutionize
 -  **Providing a Fun Incentive:** The item shop feature adds a fun layer of reward and accomplishment, giving users a sense of achievement as they complete tasks and unlock new items.
 
 ### Target Audience:
-The target audience for the Local Bar website comprises:
+The target audience for the Pomodle website comprises:
 -  **Students and Academics:** Individuals seeking to optimize their study habits, manage assignments, and stay focused during long study sessions.
 -  **Professionals and Entrepreneurs:** Busy individuals looking to enhance their productivity, prioritize tasks, and stay motivated in fast-paced work environments.
 -  **Creative Minds and Hobbyists:** Artists, writers, and creatives who need a tool to help them stay engaged and inspired during long periods of focused work.
@@ -82,20 +82,20 @@ For Pomodle, wireframes were meticulously crafted to ensure an intuitive and use
 
 For Pomodle, a vibrant and engaging color palette has been carefully selected to evoke the energy and motivation of a productive workspace.
 
-- Dark Gray: #0e1217 The dark gray tone serves as a neutral background, providing a clean and modern foundation for the application. This color choice represents stability and sophistication, setting the tone for a focused and productive environment.
+- Dark Gray: #0e1217
+The dark gray tone serves as a neutral background, providing a clean and modern foundation for the application. This color choice represents stability and sophistication, setting the tone for a focused and productive environment.
 
-- Purple: #E669FB The vibrant purple hue is used as an accent color, adding a touch of creativity and playfulness to the interface. This color choice inspires motivation and energy, encouraging users to stay engaged and motivated.
+- Purple: #E669FB
+The vibrant purple hue is used as an accent color, adding a touch of creativity and playfulness to the interface. This color choice inspires motivation and energy, encouraging users to stay engaged and motivated.
 
-- Pink: #fc538d The pink tone is used to add a pop of color and visual interest to the application. This color choice represents enthusiasm and excitement, injecting a sense of fun and enjoyment into the Pomodoro timer experience.
+- Pink: #fc538d
+The pink tone is used to add a pop of color and visual interest to the application. This color choice represents enthusiasm and excitement, injecting a sense of fun and enjoyment into the Pomodoro timer experience.
 
 In essence, this color palette reflects the dynamic and engaging nature of Pomodle, where users can stay focused, motivated, and productive in a fun and interactive environment.
 
 ### Fonts
-
 For Pomodle, I've incorporated Roboto and Poppins fonts sourced from Google Fonts. The font sizes are dynamically adjusted for responsive design.
-
 - Roboto is employed for its clean and modern aesthetic, used for body text and interface elements.
-
 - Poppins is utilized for headings and titles, providing a bold and attention-grabbing contrast to the Roboto font.
 
 Both fonts are imported from Google Fonts, ensuring a consistent and visually appealing typography throughout the application.
@@ -236,7 +236,7 @@ These tests aimed to verify that text elements across the website maintain suffi
 - [✔] Pomodoro timer starting relax interval twice after being paused
 - [✔] Username displaying as undefined
 - [✔] Audioplayer showing on the login page
-- [ ] Fontawesome icons sometimes take a long time to load
+- [❌] Fontawesome icons sometimes take a long time to load
 ## Deployment
 ### Deployment to GitHub Pages
 This section should describe the process you went through to deploy the project to a hosting platform (e.g. GitHub)
