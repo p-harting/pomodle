@@ -275,6 +275,7 @@ To ensure optimal accessibility for all users, extensive color contrast testing 
 These tests aimed to verify that text elements across the website maintain sufficient contrast against their respective backgrounds, thus ensuring readability and usability for individuals with visual impairments.
 ### Bugs
 - [✔] Pomodoro timer starting relax interval twice after being paused
+- [ ] Fontawesome icons sometimes take a long time to load
 ## Deployment
 ### Deployment to GitHub Pages
 This section should describe the process you went through to deploy the project to a hosting platform (e.g. GitHub)
@@ -300,3 +301,25 @@ To fork this repository, follow these steps:
 -   Once forked, the repository will be available under your GitHub account.
 
 ## Credits
+- Icons used throughout the website were sourced from [Font Awesome](https://fontawesome.com/).
+- All fonts utilized in the project were obtained from [Google Fonts](https://fonts.google.com/).
+- Responsive font size calculations were inspired by techniques outlined by Matthew James Taylor on [his website](https://matthewjamestaylor.com/responsive-font-size).
+- Root colors were defined with reference to information provided by [W3Schools](https://www.w3schools.com/css/css3_variables.asp).
+- Issues with loading Font Awesome were tried to solve with [Stackoverflow](https://stackoverflow.com/questions/35877994/font-awesome-is-loading-very-slow).
+- AI images for the shop items were generated with [OpenArt](https://openart.ai/help).
+- Information on creating elements in the DOM was taken from [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement).
+- Tutorials on creating tabs using JavaScript were referenced from [W3Schools](https://www.w3schools.com/howto/howto_js_tabs.asp).
+- Techniques for creating glass effects with CSS were inspired by [CSS Glass](https://css.glass/).
+- Details on using `setInterval` for timing intervals, such as for a Pomodoro timer or idle timer, were obtained from [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/API/setInterval).
+- Information on using the `play()` method for audio elements was referenced from [W3Schools](https://www.w3schools.com/jsref/met_audio_play.asp).
+- Information on local storage for storing data was taken from [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage).
+- Guidelines for creating a toast notification were referenced from [W3Schools](https://www.w3schools.com/howto/howto_js_snackbar.asp).
+- Notification sounds were sourced from [Pixabay](https://pixabay.com/sound-effects/search/success/).
+- Quotes were obtained using the API from [Quotable](https://github.com/lukePeavey/quotable).
+- Techniques on how to dynamically load HTML into another HTML file were learned from [Stackoverflow](https://stackoverflow.com/questions/41207345/javascript-dynamically-load-html-into-another-html-file).
+
+
+## Acknowledgments
+I am deeply grateful to my mentor, Dick Vlaanderen, for his invaluable guidance and support throughout the development of these projects. His expertise and encouragement have been pivotal in my growth as a developer.
+
+Additionally, I would like to thank Kristyna Wach, our Cohort Facilitator, for her unwavering assistance and commitment to creating a collaborative learning environment. Her insights and feedback have played a crucial role in shaping my learning journey.
