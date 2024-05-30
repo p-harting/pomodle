@@ -2,16 +2,11 @@
   
 
 # Pomodle
-
 ![Pomodle Website shown on a range of devices](assets/docs/mockup.png)
 
 Pomodle is your ultimate productivity companion, where focus meets fun. This innovative Pomodoro timer combines a sleek, easy-to-use interface with an engaging idle game, making staying on task a delightful experience. Whether you're a student, professional, or simply looking to boost your productivity, Pomodle provides a distraction-free environment to help you power through tasks. With its intuitive design, customizable settings, and rewarding gameplay elements, Pomodle turns productivity into a game, making it easy to stay motivated and achieve your goals.
 
-  
-
 ## [Click to view the live website](https://p-harting.github.io/pomodle/)
-
-  
 
 ## Contents
 
@@ -20,18 +15,6 @@ Pomodle is your ultimate productivity companion, where focus meets fun. This inn
 * [UX](#ux)
 
 * [Wireframes](#wireframes)
-
-* [Landingpage](#landingpage)
-
-* [Events Page](#events-page)
-
-* [Drinks Page](#drinks-page)
-
-* [Contact Page](#contact-page)
-
-* [Color Palette](#color-palette)
-
-* [Fonts](#fonts)
 
 * [Features](#features)
 
@@ -55,57 +38,29 @@ Pomodle is your ultimate productivity companion, where focus meets fun. This inn
 
 * [Acknowledgments](#acknowledgments)
 
-  
-
 ## Project Rationale
-
 Pomodle, a fusion of Pomodoro timer and idle game, was designed to revolutionize the way we approach productivity. The project's core inspiration stems from the need to make staying focused and motivated an enjoyable and rewarding experience.
 
-  
-
 ### Key Project Goals:
-
 -  **Gamifying Productivity:** The primary objective is to create an engaging platform that leverages the psychological aspects of gameplay to boost user productivity, making it easier to stay on task and achieve goals.
-
 -  **Enhancing User Experience:** By incorporating features such as a customizable task name, task history, and a relaxing music player with self-made lofi songs, Pomodle aims to create a distraction-free environment that helps users stay engaged and motivated.
-
 -  **Providing a Fun Incentive:** The item shop feature adds a fun layer of reward and accomplishment, giving users a sense of achievement as they complete tasks and unlock new items.
 
-  
-
 ### Target Audience:
-
 The target audience for the Local Bar website comprises:
-
 -  **Students and Academics:** Individuals seeking to optimize their study habits, manage assignments, and stay focused during long study sessions.
-
 -  **Professionals and Entrepreneurs:** Busy individuals looking to enhance their productivity, prioritize tasks, and stay motivated in fast-paced work environments.
-
 -  **Creative Minds and Hobbyists:** Artists, writers, and creatives who need a tool to help them stay engaged and inspired during long periods of focused work.
-
   
-
 By catering to the needs of these groups, Pomodle aims to become an indispensable productivity companion, helping users achieve their goals while making the experience enjoyable and rewarding.
 
-  
-
 ## UX
-
 Wireframes were meticulously crafted using [Figma](https://www.figma.com/), leveraging its versatile design capabilities and collaborative features.
-
-  
 
 The color palette was thoughtfully created using [Canva](https://www.canva.com/), to create a calming and focused atmosphere, perfect for productivity. The modern color palette was thoughtfully selected to evoke a sense of serenity and motivation. The typography and layout were designed to be clean, intuitive, and easy to navigate, ensuring that users can stay focused on their tasks without distraction.
 
-  
-
 ### Wireframes
-
-  
-
 Wireframes played a crucial role in the development of Pomodle, providing a visual guide for the layout and structure of each webpage. They served as blueprints, outlining the placement of key elements such as the login form, Pomodoro timer, shop interface, music player, and task management sections.
-
-  
 
 For Pomodle, wireframes were meticulously crafted to ensure an intuitive and user-friendly interface across all devices. Each wireframe represents a unique page, from the login page to the Pomodoro timer and shop interfaces, ensuring a seamless user experience.
 
@@ -121,8 +76,6 @@ For Pomodle, wireframes were meticulously crafted to ensure an intuitive and use
 
 ![Wireframe of audio player](assets/docs/ux/audioplayer-wireframe.png)
 
-  
-
 ### Color Palette
 
 ![Accessible color palette](assets/docs/ux/color-palette.png)
@@ -136,8 +89,6 @@ For Pomodle, a vibrant and engaging color palette has been carefully selected to
 - Pink: #fc538d The pink tone is used to add a pop of color and visual interest to the application. This color choice represents enthusiasm and excitement, injecting a sense of fun and enjoyment into the Pomodoro timer experience.
 
 In essence, this color palette reflects the dynamic and engaging nature of Pomodle, where users can stay focused, motivated, and productive in a fun and interactive environment.
-
-  
 
 ### Fonts
 
@@ -156,63 +107,71 @@ Both fonts are imported from Google Fonts, ensuring a consistent and visually ap
 
 ![Login Page](assets/docs/features/login.png)
 
--   A clean and simple login page where users can enter their username and set a daily goal, making it easy to get started with Pomodle.
-
-### Pomodoro Timer
-
-![Pomodoro Timer](assets/docs/features/pomodoro-timer.png)
-
--   A sleek and intuitive Pomodoro timer that helps users stay focused and on track, with customizable task names to fit their specific needs and goals.
-
-### Shop
-
-![Shop](assets/docs/features/shop.png)
-
--   A fun and engaging shop where users can browse and purchase idle items to enhance their Pomodoro experience.
-
-### Task History
-
-![Task History](assets/docs/features/history.png)
-
--   A convenient task history feature that allows users to track their progress and stay motivated, providing a clear and concise overview of completed tasks.
-
-### Help Section
-
-![Help Section](assets/docs/features/pomodoro-timer.png)
-
--   A comprehensive help section that provides users with a step-by-step guide on how to use Pomodle, ensuring a seamless experience.
-
-### Audio Player
-
-![Audio Player](assets/docs/features/audioplayer.png)
-
--   A built-in audio player featuring self-made lofi songs, designed to help users relax and stay focused during their Pomodoro sessions.
-
-### Editable Task Name
-
-![Editable Task Name](assets/docs/features/taskname.png)
-
--   Users can easily name their tasks to fit their needs, making it easy to stay organized and focused.
-
-### Timer Controls
-
-![Timer Controls](assets/docs/features/timer-controls.png)
-
--   Users can pause the timer when needed, and resume when they're ready to refocus, or reset the timer to start fresh when they're ready to start a new Pomodoro session.
-
-### Motivation Quote Section
-
-![Motivation Quote](assets/docs/features/quote.png)
-
--   A daily dose of motivation in the API-powered quote section, providing users with a new quote every session to keep them inspired and motivated.
+- A clean and simple login page where users can enter their username and set a daily goal, making it easy to get started with Pomodle.
 
 ### Navigation Bar
 
 ![Navigation Bar](assets/docs/features/navbar.png)
 
--   The navigation bar displays the user's username and productivity points, tracking their progress and providing a clear view of their accomplishments.
+- The navigation bar displays the user's username and productivity points, tracking their progress and providing a clear view of their accomplishments.
+
+### Pomodoro Timer
+
+![Pomodoro Timer](assets/docs/features/pomodoro-timer.png)
+
+- A sleek and intuitive Pomodoro timer that helps users stay focused and on track, with customizable task names to fit their specific needs and goals.
+
+### Shop
+
+![Shop](assets/docs/features/shop.png)
+
+- A fun and engaging shop where users can browse and purchase idle items to enhance their Pomodoro experience.
+
+### Task History
+
+![Task History](assets/docs/features/history.png)
+
+- A convenient task history feature that allows users to track their progress and stay motivated, providing a clear and concise overview of completed tasks.
+
+### Help Section
+
+![Help Section](assets/docs/features/pomodoro-timer.png)
+
+- A comprehensive help section that provides users with a step-by-step guide on how to use Pomodle, ensuring a seamless experience.
+
+### Audio Player
+
+![Audio Player](assets/docs/features/audioplayer.png)
+
+- A built-in audio player featuring self-made lofi songs, designed to help users relax and stay focused during their Pomodoro sessions.
+
+### Editable Task Name
+
+![Editable Task Name](assets/docs/features/taskname.png)
+
+- Users can easily name their tasks to fit their needs, making it easy to stay organized and focused.
+
+### Timer Controls
+
+![Timer Controls](assets/docs/features/timer-controls.png)
+
+- Users can pause the timer when needed, and resume when they're ready to refocus, or reset the timer to start fresh when they're ready to start a new Pomodoro session.
+
+### Motivation Quote Section
+
+![Motivation Quote](assets/docs/features/quote.png)
+
+- A daily dose of motivation in the API-powered quote section, providing users with a new quote every session to keep them inspired and motivated.
+
+### Dynamic Loading
+- I created the `loadContent(page)` function to dynamically load HTML content asynchronously, significantly enhancing the user experience. By fetching and injecting content without reloading the entire page, this approach reduces load times and provides a smoother, more responsive interaction for users. Adopting this modern standard aligns with current web development best practices, ensuring that the application is both efficient and scalable. This method not only improves performance but also facilitates a more seamless and engaging user experience.
 
 ### Features to implement in the future
+- Abbreviate large numbers
+- Confetti explosion on finishing a work interval
+- Implementation of the goal
+- List of owned items
+- More items in the shop
 
 ## Responsive Design
 - **Optimized Images:** All images on Pomodle are optimized for fast loading times, ensuring a smooth experience across various devices and screen sizes.
@@ -275,6 +234,8 @@ To ensure optimal accessibility for all users, extensive color contrast testing 
 These tests aimed to verify that text elements across the website maintain sufficient contrast against their respective backgrounds, thus ensuring readability and usability for individuals with visual impairments.
 ### Bugs
 - [✔] Pomodoro timer starting relax interval twice after being paused
+- [✔] Username displaying as undefined
+- [✔] Audioplayer showing on the login page
 - [ ] Fontawesome icons sometimes take a long time to load
 ## Deployment
 ### Deployment to GitHub Pages
